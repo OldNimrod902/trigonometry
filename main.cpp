@@ -20,7 +20,14 @@ void calculateOption101() {
         cin >> angleC;
     }
     c=sqrt(a*a + b*b - 2*a*b*cos(angleC*M_PI/180));
-    cout << "The length of the third side (side c) is: " << c << endl;
+    angleA=acos((b*b + c*c - a*a)/(2*b*c))*180/M_PI;
+    angleB=180-angleA-angleC;
+    cout << "Side a: " << a << endl;
+    cout << "Side b: " << b << endl;
+    cout << "Side c: " << c << endl;
+    cout << "Angle A: " << angleA << endl;
+    cout << "Angle B: " << angleB << endl;
+    cout << "Angle C: " << angleC << endl;
 }
 
 void calculateOption102() {
