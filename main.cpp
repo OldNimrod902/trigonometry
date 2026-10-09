@@ -11,7 +11,8 @@ void settings() {
 
 void calculateOption101() {
     float a, b, c, angleA, angleB, angleC;
-    cout << "TWO SIDES AND THE ANGLE BETWEEN THEM\n(LAW OF COSINES)\n\nEnter the length of the two known sides (sides a and b): ";
+    cout << "TWO SIDES AND THE ANGLE BETWEEN THEM\n\n";
+    cout << "Enter the length of the two known sides (sides a and b): ";
     cin >> a >> b;
     cout << "Enter the angle between the two sides (in degrees): ";
     cin >> angleC;
@@ -32,11 +33,34 @@ void calculateOption101() {
 
 void calculateOption102() {
     float a, b, c, angleA, angleB, angleC;
-    
+    cout << "ONE SIDE AND TWO ANGLES\n\n";
+    cout << "Enter the length of the known side (side a): ";
+    cin >> a;
+    cout << "Enter the two known angles (in degrees): ";
+    cin >> angleA >> angleB;
 }
 
 void calculateOption103() {
     float a, b, c, angleA, angleB, angleC;
+    cout << "ALL THREE SIDES\n\n";
+    cout << "Enter the lengths of the three sides (sides a, b, and c): ";
+    cin >> a >> b >> c;
+    
+    while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
+        cout << "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+        cin >> a >> b >> c;
+    }
+
+    angleA=acos((b*b + c*c - a*a)/(2*b*c))*180/M_PI;
+    angleB=acos((a*a +c*c -b*b)/(2*a*c))*180/M_PI;
+    angleC=180-angleA-angleB;
+
+    cout << "Side a: " << a << endl;
+    cout << "Side b: " << b << endl;
+    cout << "Side c: " << c << endl;
+    cout << "Angle A: " << angleA << endl;
+    cout << "Angle B: " << angleB << endl;
+    cout << "Angle C: " << angleC << endl;
 }
 
 // First submenus from the main menu 
@@ -80,7 +104,7 @@ void calculateMenu5() {
 void selection() {
     int option;
     cout << "\n\n+====+ TRIGONOMETRY CALCULATOR +====+\n\nSelect an option below:\n\n";
-    cout << "[1] Solve a triangle\n";
+    cout << "[1] Solve a triangle";
     cout << "\n+===================================+\n";
     cout << "[2] Calculate the area of a triangle\n";
     cout << "[3] Calculate the perimeter of a triangle\n";
