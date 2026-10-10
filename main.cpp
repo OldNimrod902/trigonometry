@@ -123,6 +123,28 @@ void calculateOption103() {
     cout << "Angle C: " << angleC << endl;
 }
 
+void calculateMedian() {
+    float a, b, c, medianA, medianB, medianC;
+    cout << "MEDIAN\n\n";
+    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
+    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+    cin >> a >> b >> c;
+    medianA=0.5*sqrt(2*b*b+2*c*c-a*a);
+    medianB=0.5*sqrt(2*a*a+2*c*c-b*b);
+    medianC=0.5*sqrt(2*a*a+2*b*b-c*c);
+    cout << "Median from vertex A: " << medianA << endl;
+    cout << "Median from vertex B: " << medianB << endl;
+    cout << "Median from vertex C: " << medianC << endl;
+}
+
+void calculateAltitude() {
+    cout << "Not yet implemented. Select another option below;" << endl;
+}
+
+void calculateAngleBisector() {
+    cout << "Not yet implemented. Select another option below;" << endl;
+}
+
 // First submenus from the main menu 
 
 void calculateMenu1() {
@@ -154,7 +176,23 @@ void calculateMenu3() {
 }
 
 void calculateMenu4() {
-    cout << "Not yet implemented. Select another option below;" << endl;
+    int option;
+    cout << "\n\n+====+ NOTABLE LINES         +====+\n\nWhich notable line do you want to calculate?\n\n";
+    cout << "[1] Median\n";
+    cout << "[2] Altitude[WIP]\n";
+    cout << "[3] Angle bisector[WIP]\n";
+    cout << "\n+===================================+\n";
+    cout << "Enter the corresponding number to your selection: "; cin >> option;
+
+    if(option == 1) {
+        calculateMedian();
+    }
+    else if(option == 2) {
+        calculateAltitude();
+    }
+    else if(option == 3) {
+        calculateAngleBisector();
+    }
 }
 
 void calculateMenu5() {
@@ -170,13 +208,13 @@ void selection() {
     cout << "\nSelect an option below:\n\n";
     cout << "[1] Solve a triangle";
     cout << "\n+===================================+\n";
-    cout << "[2] Calculate the area of a triangle\n";
-    cout << "[3] Calculate the perimeter of a triangle\n";
-    cout << "[4] Calculate the notable lines of a triangle\n";
-    cout << "[5] Calculate the radius of a triangle\'s circumcircle and incircle";
-    cout << "\n+===================================+\n";
-    cout << "[9] Exit [0] Settings";
-    cout << "\n+===================================+\n";
+    cout << "[2] Calculate the area of a triangle [WIP]\n";
+    cout << "[3] Calculate the perimeter of a triangle [WIP]\n";
+    cout << "[4] Calculate the notable lines of a triangle [WIP]\n";
+    cout << "[5] Calculate the radius of a triangle\'s circumcircle and incircle [WIP]\n";
+    cout << "+===================================+\n";
+    cout << "[9] Exit [0] Settings\n";
+    cout << "+===================================+\n";
     cout << "Enter the corresponding number to your selection: "; cin >> option;
     
     if(option == 9) {
