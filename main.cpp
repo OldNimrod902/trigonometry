@@ -22,13 +22,26 @@ float pythagoreanForCathetus(float hypo, float cath1) { // Pythagorean theorem f
     return sqrt(hypo*hypo - cath1*cath1);
 }
 
+void coutSeparator() { // Void to output a separator line
+    cout << "+===================================+" << endl;
+}  
+
+void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, float angleC) { // Void to output the solved triangle
+    cout << "Side a: " << a << endl;
+    cout << "Side b: " << b << endl;
+    cout << "Side c: " << c << endl;
+    cout << "Angle A: " << angleA << endl;
+    cout << "Angle B: " << angleB << endl;
+    cout << "Angle C: " << angleC << endl;
+}
+
 void settings() { // Settings menu for selecting the unit of measurement for angles
     cout << endl << "+===UNIT=OF=MEASUREMENT=============+" << endl;
     
     cout << "Select the unit of measurement for angles:" << endl << endl;
     cout << "[1] Degrees" << endl;
     cout << "[2] Radians" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: ";
     int option; cin >> option;
     if(option == 2) {
@@ -46,8 +59,8 @@ void calculateOption101() { // Void using Law Of Cosines
     cin >> a >> b;
     cout << "Enter the angle between the two sides (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angleC;
-    while (radians ? (angleC <= 0 || angleC >= 2*M_PI) : (angleC <= 0 || angleC >= 180)) {
-        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "2PI radians" : "180 degrees") << ": ";
+    while (radians ? (angleC <= 0 || angleC >= M_PI) : (angleC <= 0 || angleC >= 180)) {
+        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
         cin >> angleC;
     }
     if(radians) { 
@@ -60,12 +73,7 @@ void calculateOption101() { // Void using Law Of Cosines
         angleA=acos((b*b + c*c - a*a)/(2*b*c))*180/M_PI;
         angleB=180-angleA-angleC;
     }
-    cout << "Side a: " << a << endl;
-    cout << "Side b: " << b << endl;
-    cout << "Side c: " << c << endl;
-    cout << "Angle A: " << angleA << endl;
-    cout << "Angle B: " << angleB << endl;
-    cout << "Angle C: " << angleC << endl;
+    coutSolvedTriangle(a, b, c, angleA, angleB, angleC);
 }
 
 void calculateOption102() { // Void using Law Of Sines
@@ -75,15 +83,15 @@ void calculateOption102() { // Void using Law Of Sines
     cin >> a;
     cout << "Enter the angle opposite to the known side (angle A, in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angleA;
-    while (radians ? (angleA <= 0 || angleA >= 2*M_PI) : (angleA <= 0 || angleA >= 180)) {
-        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "2PI radians" : "180 degrees") << ": ";
+    while (radians ? (angleA <= 0 || angleA >= M_PI) : (angleA <= 0 || angleA >= 180)) {
+        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
         cin >> angleA;
     }
 
     cout << "Enter the other known angle (angle B, in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angleB;
-    while (radians ? (angleB <= 0 || angleB >= 2*M_PI) : (angleB <= 0 || angleB >= 180)) {
-        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "2PI radians" : "180 degrees") << ": ";
+    while (radians ? (angleB <= 0 || angleB >= M_PI) : (angleB <= 0 || angleB >= 180)) {
+        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
         cin >> angleB;
     }
 
@@ -103,12 +111,7 @@ void calculateOption102() { // Void using Law Of Sines
         c=(a*sin(angleC*M_PI/180))/sin(angleA*M_PI/180);
     }
 
-    cout << "Side a: " << a << endl;
-    cout << "Side b: " << b << endl;
-    cout << "Side c: " << c << endl;
-    cout << "Angle A: " << angleA << endl;
-    cout << "Angle B: " << angleB << endl;
-    cout << "Angle C: " << angleC << endl;
+    coutSolvedTriangle(a, b, c, angleA, angleB, angleC);
 }
 
 void calculateOption103() { // Void using Law Of Cosines to find angles
@@ -133,12 +136,7 @@ void calculateOption103() { // Void using Law Of Cosines to find angles
         angleC=180-angleA-angleB;
     }
 
-    cout << "Side a: " << a << endl;
-    cout << "Side b: " << b << endl;
-    cout << "Side c: " << c << endl;
-    cout << "Angle A: " << angleA << endl;
-    cout << "Angle B: " << angleB << endl;
-    cout << "Angle C: " << angleC << endl;
+    coutSolvedTriangle(a, b, c, angleA, angleB, angleC);
 }
 
 void calculateMedian(float a, float b, float c) { // Void to calculate the medians of a triangle with its side lengths
@@ -184,7 +182,7 @@ void calculateMenuSolveTriangle() {
     cout << "[1] Two sides and the angle between them" << endl;
     cout << "[2] Two angles and a side opposite to one of them" << endl;
     cout << "[3] All three sides" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
     
     if(option == 1) {
@@ -207,7 +205,7 @@ void calculateMenuArea() {
     cout << endl << endl<< "+===AREA=OF=A=TRIANGLE==============+" << endl << "How do you want to calculate the area of the triangle?" << endl << endl;
     cout << "[1] Using three sides (Heron's formula)" << endl;
     cout << "[2] Using the base and height" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
 
     if(option==1) {
@@ -243,7 +241,7 @@ void calculateMenuNotableLines() {
     cout << "[1] Median" << endl;
     cout << "[2] Altitude" << endl;
     cout << "[3] Angle bisector" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
 
     if(option == 1) {
@@ -287,7 +285,7 @@ void bonusMenuPythagorean() {
     cout << "Select an option below:" << endl << endl;
     cout << "[1] Find the hypotenuse (longest side)" << endl;
     cout << "[2] Find a cathetus" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
 
     if(option==1) {
@@ -316,8 +314,12 @@ void bonusMenuSinCosCalc() {
 
     cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angle;
+    while (radians ? (angle < 0 || angle > M_PI) : (angle < 0 || angle > 180)) {
+        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
+        cin >> angle;
+    }
     if(!radians) {
-        angle = angle * M_PI / 180;
+        angle=angle*M_PI /180;
     }
     cout << "The sine of the angle is   " << sin(angle) << endl;
     cout << "The cosine of the angle is " << cos(angle) << endl;
@@ -329,7 +331,7 @@ void selection() {
     cout << "Angles currently set to "; if(radians) cout << "radians"; else cout << "degrees"; cout << endl;
     cout << "Select an option below:" << endl << endl;
     cout << "[1] Solve a triangle" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "[2] Calculate the area of a triangle" << endl;
     cout << "[3] Calculate the notable lines of a triangle" << endl;
     cout << "[4] Calculate the radius of a triangle\'s circumcircle and incircle" << endl;
@@ -338,7 +340,7 @@ void selection() {
     cout << "[6] Sin and Cosine value calculator" << endl;
     cout << "+===MISCELLANEOUS===================+" << endl;
     cout << "[9] Exit [0] Edit angle units" << endl;
-    cout << "+===================================+" << endl;
+    coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
     
     if(option == 9) {
@@ -373,7 +375,7 @@ void selection() {
 
 int main() {
     cout << "+====+ TRIGONOMETRY CALCULATOR +====+" << endl;
-    cout << "+=+ made by @nnimrod704 for Terra +=+" << endl << endl;
+    cout << "[~] made by @nnimrod704 for Terra [~]" << endl << endl;
     do {
         selection();
     } while (!exitProgram);
