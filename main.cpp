@@ -123,12 +123,8 @@ void calculateOption103() {
     cout << "Angle C: " << angleC << endl;
 }
 
-void calculateMedian() {
-    float a, b, c, medianA, medianB, medianC;
-    cout << "MEDIAN\n\n";
-    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
-    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
-    cin >> a >> b >> c;
+void calculateMedian(float a, float b, float c) {
+    float medianA, medianB, medianC;
     medianA=0.5*sqrt(2*b*b+2*c*c-a*a);
     medianB=0.5*sqrt(2*a*a+2*c*c-b*b);
     medianC=0.5*sqrt(2*a*a+2*b*b-c*c);
@@ -137,13 +133,9 @@ void calculateMedian() {
     cout << "Median from vertex C: " << medianC << endl;
 }
 
-void calculateAltitude() {
-    float s, a, b, c, altitudeA, altitudeB, altitudeC;
-    cout << "ALTITUDE\n\n";
-    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
-    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
-    cin >> a >> b >> c;
-    s=(a+b+c)/2;
+void calculateAltitude(float a, float b, float c) {
+    float altitudeA, altitudeB, altitudeC;
+    float s=(a+b+c)/2;
     altitudeA=2*sqrt(s*(s-a)*(s-b)*(s-c))/a;
     altitudeB=2*sqrt(s*(s-a)*(s-b)*(s-c))/b;
     altitudeC=2*sqrt(s*(s-a)*(s-b)*(s-c))/c;
@@ -153,8 +145,17 @@ void calculateAltitude() {
     cout << "Altitude from vertex C: " << altitudeC << endl;
 }
 
-void calculateAngleBisector() {
-    cout << "Not yet implemented. Select another option below;" << endl;
+void calculateAngleBisector(float a, float b, float c) {
+    float bisectorA, bisectorB, bisectorC, halfA, halfB, halfC;
+    halfA=acos((b*b+c*c-a*a)/(2*b*c))/2;
+    halfB=acos((a*a+c*c-b*b)/(2*a*c))/2;
+    halfC=M_PI/2-halfA-halfB;
+    bisectorA=(2*b*c*cos(halfA))/(b+c);
+    bisectorB=(2*a*c*cos(halfB))/(a+c);
+    bisectorC=(2*a*b*cos(halfC))/(a+b);
+    cout << "Angle bisector from vertex A: " << bisectorA << endl;
+    cout << "Angle bisector from vertex B: " << bisectorB << endl;
+    cout << "Angle bisector from vertex C: " << bisectorC << endl;
 }
 
 // First submenus from the main menu 
@@ -189,21 +190,31 @@ void calculateMenu3() {
 
 void calculateMenu4() {
     int option;
-    cout << "\n\n+====+ NOTABLE LINES         +====+\n\nWhich notable line do you want to calculate?\n\n";
+    float a, b, c;
+    cout << "\n\n+====+ NOTABLE LINES         +====+\n\n";
+
+    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
+    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+
+    do{
+        cin >> a >> b >> c;
+    }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
+
+    cout << "\nWhich notable line do you want to calculate?\n\n";
     cout << "[1] Median\n";
-    cout << "[2] Altitude[WIP]\n";
-    cout << "[3] Angle bisector[WIP]\n";
+    cout << "[2] Altitude\n";
+    cout << "[3] Angle bisector\n";
     cout << "\n+===================================+\n";
     cout << "Enter the corresponding number to your selection: "; cin >> option;
 
     if(option == 1) {
-        calculateMedian();
+        calculateMedian(a, b, c);
     }
     else if(option == 2) {
-        calculateAltitude();
+        calculateAltitude(a, b, c);
     }
     else if(option == 3) {
-        calculateAngleBisector();
+        calculateAngleBisector(a, b, c);
     }
 }
 
@@ -222,7 +233,7 @@ void selection() {
     cout << "\n+===================================+\n";
     cout << "[2] Calculate the area of a triangle [WIP]\n";
     cout << "[3] Calculate the perimeter of a triangle [WIP]\n";
-    cout << "[4] Calculate the notable lines of a triangle [WIP]\n";
+    cout << "[4] Calculate the notable lines of a triangle\n";
     cout << "[5] Calculate the radius of a triangle\'s circumcircle and incircle [WIP]\n";
     cout << "+===================================+\n";
     cout << "[9] Exit [0] Settings\n";
