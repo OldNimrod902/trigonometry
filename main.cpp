@@ -325,6 +325,23 @@ void bonusMenuSinCosCalc() {
     cout << "The cosine of the angle is " << cos(angle) << endl;
 }
 
+void bonusMenuTanCotCalc() {
+    float angle;
+    cout << endl << endl << "+===TANGENT=AND=COTANGENT=CALC.=====+" << endl;
+
+    cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
+    cin >> angle;
+    while (radians ? (angle < 0 || angle > M_PI) : (angle < 0 || angle > 180)) {
+        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
+        cin >> angle;
+    }
+    if(!radians) {
+        angle=angle*M_PI /180;
+    }
+    cout << "The tangent of the angle is   " << tan(angle) << endl;
+    cout << "The cotangent of the angle is " << 1/tan(angle) << endl;
+}
+
 void selection() {
     int option;
     cout << endl <<"+===MAIN=MENU=======================+" << endl;
@@ -338,6 +355,7 @@ void selection() {
     cout << "+===BONUS=FEATURES==================+" << endl;
     cout << "[5] Pythagorean Theorem" << endl;
     cout << "[6] Sin and Cosine value calculator" << endl;
+    cout << "[7] Tangent and Cotangent value calculator" << endl;
     cout << "+===MISCELLANEOUS===================+" << endl;
     cout << "[9] Exit [0] Edit angle units" << endl;
     coutSeparator();
@@ -364,6 +382,9 @@ void selection() {
     }
     else if (option == 6) {
         bonusMenuSinCosCalc();
+    }
+    else if (option == 7) {
+        bonusMenuTanCotCalc();
     }
     else if (option == 0) {
         settings();
