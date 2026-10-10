@@ -138,7 +138,19 @@ void calculateMedian() {
 }
 
 void calculateAltitude() {
-    cout << "Not yet implemented. Select another option below;" << endl;
+    float s, a, b, c, altitudeA, altitudeB, altitudeC;
+    cout << "ALTITUDE\n\n";
+    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
+    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+    cin >> a >> b >> c;
+    s=(a+b+c)/2;
+    altitudeA=2*sqrt(s*(s-a)*(s-b)*(s-c))/a;
+    altitudeB=2*sqrt(s*(s-a)*(s-b)*(s-c))/b;
+    altitudeC=2*sqrt(s*(s-a)*(s-b)*(s-c))/c;
+
+    cout << "Altitude from vertex A: " << altitudeA << endl;
+    cout << "Altitude from vertex B: " << altitudeB << endl;
+    cout << "Altitude from vertex C: " << altitudeC << endl;
 }
 
 void calculateAngleBisector() {
