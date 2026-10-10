@@ -314,8 +314,8 @@ void bonusMenuSinCosCalc() {
 
     cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angle;
-    while (radians ? (angle < 0 || angle > M_PI) : (angle < 0 || angle > 180)) {
-        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
+    while (angle == 0 || (radians ? (angle == M_PI) : (angle == 180))) {
+        cout << "Invalid angle. Please enter an angle other than 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
         cin >> angle;
     }
     if(!radians) {
@@ -331,8 +331,8 @@ void bonusMenuTanCotCalc() {
 
     cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angle;
-    while (radians ? (angle < 0 || angle > M_PI) : (angle < 0 || angle > 180)) {
-        cout << "Invalid angle. Please enter an angle between 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
+    while (angle == 0 || (radians ? (angle == M_PI) : (angle == 180))) {
+        cout << "Invalid angle. Please enter an angle other than 0 and " << (radians ? "PI radians" : "180 degrees") << ": ";
         cin >> angle;
     }
     if(!radians) {
