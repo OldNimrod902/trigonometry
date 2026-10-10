@@ -219,7 +219,22 @@ void calculateMenu4() {
 }
 
 void calculateMenu5() {
-    cout << "Not yet implemented. Select another option below;" << endl;
+    float a, b, c;
+    cout << "\n\n+====+ RADIUS CALCULATIONS   +====+\n\n";
+
+    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
+    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+    do{
+        cin >> a >> b >> c;
+    }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
+
+    float s=(a+b+c)/2;
+    float area=sqrt(s*(s-a)*(s-b)*(s-c));
+    float circumradius=(a*b*c)/(4*area);
+    float inradius=area/s;
+
+    cout << "Circumradius of the triangle: " << circumradius << endl;
+    cout << "Inradius of the triangle: " << inradius << endl;
 }
 
 void selection() {
@@ -234,7 +249,7 @@ void selection() {
     cout << "[2] Calculate the area of a triangle [WIP]\n";
     cout << "[3] Calculate the perimeter of a triangle [WIP]\n";
     cout << "[4] Calculate the notable lines of a triangle\n";
-    cout << "[5] Calculate the radius of a triangle\'s circumcircle and incircle [WIP]\n";
+    cout << "[5] Calculate the radius of a triangle\'s circumcircle and incircle\n";
     cout << "+===================================+\n";
     cout << "[9] Exit [0] Settings\n";
     cout << "+===================================+\n";
