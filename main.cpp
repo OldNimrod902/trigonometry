@@ -43,6 +43,11 @@ char strNoticeClosingProgram[100] = "Closing the program...";
 char strNoticeEnterOption[100] = "Enter the corresponding number to your selection: ";
 char strNoticeSelectAnOption[100] = "Select an option below: ";
 
+char strSlvTriInformationQuestion[100] = "What information do you know about the triangle?";
+char strSlvTriOption2Side1Angle[100] = "Two sides and the angle between them";
+char strSlvTriOption1Side2Angle[100] = "Two angles and a side opposite to one of them";
+char strSlvTriOption3Side0Angle[100] = "All three sides";
+
 void setLanguageHUN() {
     //Title screen titles
     strcpy(strTitleMainMenu, "+===FOMENU==========================+");
@@ -79,6 +84,11 @@ void setLanguageHUN() {
     strcpy(strNoticeClosingProgram, "Program bezarasa...");
     strcpy(strNoticeEnterOption, "Add meg a kivalasztott menupont sorszamat: ");
     strcpy(strNoticeSelectAnOption, "Valassz egyet az alabbi menupontok kozul: ");
+    //Solving of a triangle
+    strcpy(strSlvTriInformationQuestion, "Milyen informaciokat ismersz a haromszogrol?");
+    strcpy(strSlvTriOption2Side1Angle, "Ket oldalt es az altaluk kozrezart szoget");
+    strcpy(strSlvTriOption1Side2Angle, "Ket szoget es valamelyik szoggel szembenfekvo oldalt");
+    strcpy(strSlvTriOption3Side0Angle, "Mindharom oldalt");
 }
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
@@ -274,10 +284,10 @@ void calculateAngleBisector(float a, float b, float c) { // Void to calculate th
 
 void calculateMenuSolveTriangle() {
     int option;
-    cout << endl << endl << strTitleSolveTriangle << endl << "What information do you have about the triangle?" << endl << endl;
-    cout << "[1] Two sides and the angle between them" << endl;
-    cout << "[2] Two angles and a side opposite to one of them" << endl;
-    cout << "[3] All three sides" << endl;
+    cout << endl << endl << strTitleSolveTriangle << endl << strSlvTriInformationQuestion << endl << endl;
+    cout << "[1] " << strSlvTriOption2Side1Angle << endl;
+    cout << "[2] " << strSlvTriOption1Side2Angle << endl;
+    cout << "[3] " << strSlvTriOption3Side0Angle << endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
     
