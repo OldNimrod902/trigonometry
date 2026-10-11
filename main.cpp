@@ -53,7 +53,8 @@ char strNoticeInexistentOption[100] = "No such option exists.\nPlease select a v
 char strNoticeClosingProgram[100] = "Closing the program...";
 char strNoticeEnterOption[100] = "Enter the corresponding number to your selection: ";
 char strNoticeSelectAnOption[100] = "Select an option below: ";
-char strNoticeTriangleInequality[100] = "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+char strNoticeTriangleInequality[200] = "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+char strNoticeTipFor3Sides[200] = "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.";
 
 char strNoticeEnterAngleBetweenSides[100] = "Enter the angle between the two sides (angle C): ";
 char strNoticeEnter2Sides[100] = "Enter the length of the two known sides (sides a and b): ";
@@ -118,6 +119,7 @@ void setLanguageHUN() {
     strcpy(strNoticeEnterOption, "Add meg a kivalasztott menupont sorszamat: ");
     strcpy(strNoticeSelectAnOption, "Valassz egyet az alabbi menupontok kozul: ");
     strcpy(strNoticeTriangleInequality, "Hibas oldalhosszak. Olyan pozitiv ertekeket adj meg, amelyek teljesitik a haromszog egyenlotlenseget (a+b>c): ");
+    strcpy(strNoticeTipFor3Sides, "TIPP: Ha meg nem tudod a haromszog mindharom oldalat,\nakkor hasznald a Haromszog Megoldasa funkciot.");
     //Solving of a triangle
     strcpy(strSlvTriInformationQuestion, "Milyen informaciokat ismersz a haromszogrol?");
     strcpy(strSlvTriOption2Side1Angle, "Ket oldalt es az altaluk kozrezart szoget");
@@ -380,10 +382,10 @@ void calculateMenuNotableLines() {
     int option;
     float a, b, c;
     cout << endl << endl << strTitleNotableLines << endl;;
-    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first." << endl << endl; 
-    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+    cout << strNoticeTipFor3Sides << endl << endl; 
 
     do{
+        cout << strNoticeEnterAll3Sides;
         cin >> a >> b >> c;
     }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
 
@@ -413,8 +415,8 @@ void calculateMenuRadius() {
     float a, b, c;
     cout << endl << endl << strTitleRadiusCalculator << endl << endl;
 
-    cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
-    cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+    cout << strNoticeTipFor3Sides << endl << endl; 
+    cout << strNoticeEnterAll3Sides;
     do{
         cin >> a >> b >> c;
     }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
@@ -462,7 +464,7 @@ void bonusMenuSinCosCalc() {
     float angle;
     cout << endl << endl << strTitleSinCosCalculator << endl;
 
-    cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
+    cout << "Enter the angle: ";
     cin >> angle;
     while (angle == 0 || (radians ? (angle == M_PI) : (angle == 180))) {
         cout << (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
