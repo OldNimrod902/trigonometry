@@ -4,6 +4,33 @@ using namespace std;
 
 bool exitProgram = false;
 bool radians = false;
+char language = 'E'; // Default language is English
+
+// Language initalization
+
+char strTitleMainMenu[1000] = "+===MAIN=MENU=======================+";
+char strTitleSolveTriangle[1000] = "+===SOLVE=A=TRIANGLE================+";
+char strTitleAreaTriangle[1000] = "+===AREA=OF=A=TRIANGLE==============+";
+char strTitleNotableLines[1000] = "+===NOTABLE=LINES=OF=A=TRIANGLE=====+";
+char strTitleRadiusCalculator[1000] = "+===RADIUS=CALCULATOR===============+";
+char strTitlePythagorean[1000] = "+===PYTHAGOREAN=THEOREM=============+";
+char strTitleSinCosCalculator[1000] = "+===SIN=AND=COSINE=CALCULATOR=======+";
+char strTitleTanCotCalculator[1000] = "+===TANGENT=AND=COTANGENT=CALC.=====+";
+char strTitleAngleUnits[1000] = "+===UNIT=OF=MEASUREMENT=============+";
+char strTitleLanguageSelection[1000] = "+===LANGUAGE=SELECTION==============+";
+
+void setLanguageHUN() {
+    strcpy(strTitleMainMenu, "+===FOMENU==========================+");
+    strcpy(strTitleSolveTriangle, "+===HAROMSZOG=MEGOLDASA=============+");
+    strcpy(strTitleAreaTriangle, "+===HAROMSZOG=TERULETE==============+");
+    strcpy(strTitleNotableLines, "+===HAROMSZOG=NEVEZETES=VONALAI=====+");
+    strcpy(strTitleRadiusCalculator, "+===KOREIRT=ES=BELERIRT=KOR=SUGARA==+");
+    strcpy(strTitlePythagorean, "+===PITAGORASZ=TETEL================+");
+    strcpy(strTitleSinCosCalculator, "+===SZINUSZ=ES=KOSZINUSZ=SZAMOLO====+");
+    strcpy(strTitleTanCotCalculator, "+===TANGENS=ES=KOTANGENS=SZAMOLO====+");
+    strcpy(strTitleAngleUnits, "+===SZOG=MERTEKEGYSEGE==============+");
+    strcpy(strTitleLanguageSelection, "+===NYELV=KIVALASZTASA==============+");
+}
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
     return 0.5*base*height;
@@ -35,8 +62,8 @@ void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, f
     cout << "Angle C: " << angleC << endl;
 }
 
-void settings() { // Settings menu for selecting the unit of measurement for angles
-    cout << endl << "+===UNIT=OF=MEASUREMENT=============+" << endl;
+void settingsAngleUnits() { // Settings menu for selecting the unit of measurement for angles
+    cout << endl << strTitleAngleUnits << endl;
     
     cout << "Select the unit of measurement for angles:" << endl << endl;
     cout << "[1] Degrees" << endl;
@@ -49,6 +76,26 @@ void settings() { // Settings menu for selecting the unit of measurement for ang
     }
     else {
         radians = false;
+    }
+}
+
+void settingsLanguage() { // Settings menu for selecting the language of the program
+    cout << endl << strTitleLanguageSelection << endl;
+    
+    cout << "Select the language of the program:" << endl << endl;
+    cout << "[E] English" << endl;
+    cout << "[H] Hungarian" << endl;
+    coutSeparator();
+    cout << "Enter the corresponding letter to your selection: ";
+    char option; cin >> option;
+    if(option == 'H' || option == 'h') {
+        language = 'H';
+        cout << "Magyar nyelv kivalasztva." << endl;
+        setLanguageHUN();
+    }
+    else {
+        language = 'E';
+        cout << "Language set to English." << endl;
     }
 }
 
@@ -178,7 +225,7 @@ void calculateAngleBisector(float a, float b, float c) { // Void to calculate th
 
 void calculateMenuSolveTriangle() {
     int option;
-    cout << endl << endl << "+===SOLVE=A=TRIANGLE================+" << endl << "What information do you have about the triangle?" << endl << endl;
+    cout << endl << endl << strTitleSolveTriangle << endl << "What information do you have about the triangle?" << endl << endl;
     cout << "[1] Two sides and the angle between them" << endl;
     cout << "[2] Two angles and a side opposite to one of them" << endl;
     cout << "[3] All three sides" << endl;
@@ -202,7 +249,7 @@ void calculateMenuSolveTriangle() {
 
 void calculateMenuArea() {
     int option;
-    cout << endl << endl<< "+===AREA=OF=A=TRIANGLE==============+" << endl << "How do you want to calculate the area of the triangle?" << endl << endl;
+    cout << endl << endl<< strTitleAreaTriangle << endl << "How do you want to calculate the area of the triangle?" << endl << endl;
     cout << "[1] Using three sides (Heron's formula)" << endl;
     cout << "[2] Using the base and height" << endl;
     coutSeparator();
@@ -229,7 +276,7 @@ void calculateMenuArea() {
 void calculateMenuNotableLines() {
     int option;
     float a, b, c;
-    cout << endl << endl << "+===NOTABLE=LINES=OF=A=TRIANGLE=====+" << endl;;
+    cout << endl << endl << strTitleNotableLines << endl;;
     cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first." << endl << endl; 
     cout << "Enter the lengths of all three sides (sides a, b, and c): ";
 
@@ -261,7 +308,7 @@ void calculateMenuNotableLines() {
 
 void calculateMenuRadius() {
     float a, b, c;
-    cout << endl << endl << "+===RADIUS=CALCULATOR===============+" << endl << endl;
+    cout << endl << endl << strTitleRadiusCalculator << endl << endl;
 
     cout << "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.\n\n"; 
     cout << "Enter the lengths of all three sides (sides a, b, and c): ";
@@ -280,7 +327,7 @@ void calculateMenuRadius() {
 
 void bonusMenuPythagorean() {
     int option;
-    cout << endl << endl << "+===PYTHAGOREAN=THEOREM=============+" << endl;
+    cout << endl << endl << strTitlePythagorean << endl;
     cout << "NOTE: These features only work with right triangles." << endl;
     cout << "Select an option below:" << endl << endl;
     cout << "[1] Find the hypotenuse (longest side)" << endl;
@@ -310,7 +357,7 @@ void bonusMenuPythagorean() {
 
 void bonusMenuSinCosCalc() {
     float angle;
-    cout << endl << endl << "+===SIN=AND=COSINE=CALCULATOR=======+" << endl;
+    cout << endl << endl << strTitleSinCosCalculator << endl;
 
     cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angle;
@@ -327,7 +374,7 @@ void bonusMenuSinCosCalc() {
 
 void bonusMenuTanCotCalc() {
     float angle;
-    cout << endl << endl << "+===TANGENT=AND=COTANGENT=CALC.=====+" << endl;
+    cout << endl << endl << strTitleTanCotCalculator << endl;
 
     cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
     cin >> angle;
@@ -344,7 +391,7 @@ void bonusMenuTanCotCalc() {
 
 void selection() {
     int option;
-    cout << endl <<"+===MAIN=MENU=======================+" << endl;
+    cout << endl << strTitleMainMenu << endl;
     cout << "Angles currently set to "; if(radians) cout << "radians"; else cout << "degrees"; cout << endl;
     cout << "Select an option below:" << endl << endl;
     cout << "[1] Solve a triangle" << endl;
@@ -357,7 +404,7 @@ void selection() {
     cout << "[6] Sin and Cosine value calculator" << endl;
     cout << "[7] Tangent and Cotangent value calculator" << endl;
     cout << "+===MISCELLANEOUS===================+" << endl;
-    cout << "[9] Exit [0] Edit angle units" << endl;
+    cout << "[9] Exit [0] Edit angle units [8] Change language" << endl;
     coutSeparator();
     cout << "Enter the corresponding number to your selection: "; cin >> option;
     
@@ -387,7 +434,10 @@ void selection() {
         bonusMenuTanCotCalc();
     }
     else if (option == 0) {
-        settings();
+        settingsAngleUnits();
+    }
+    else if (option == 8) {
+        settingsLanguage();
     }
     else {
         cout << "No such option exists.\nPlease select a valid option from the menu." << endl;
