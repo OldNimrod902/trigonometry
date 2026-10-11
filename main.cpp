@@ -21,6 +21,17 @@ char strTitleLanguageSelection[100] = "+===LANGUAGE=SELECTION==============+";
 char strTitleBonusFeatures[100] = "+===BONUS=FEATURES==================+";
 char strTitleMisc[100] = "+===MISCELLANEOUS===================+";
 
+char strLengthSideA[100] = "Side a: ";
+char strLengthSideB[100] = "Side b: ";
+char strLengthSideC[100] = "Side c: ";
+char strSizeAngleA[100] = "Angle A";
+char strSizeAngleB[100] = "Angle B";
+char strSizeAngleC[100] = "Angle C";
+
+char strTitleSlvTri2Side1Angle[100] = "+=+ TWO SIDES AND THE ANGLE BETWEEN THEM +=+";
+char strTitleSlvTri1Side2Angle[100] = "+=+ TWO ANGLES AND A SIDE OPPOSITE TO ONE OF THEM +=+";
+char strTitleSlvTri3Side0Angle[100] = "+=+ ALL THREE SIDES +=+";
+
 char strMenuMainSolveTriangle[100] = "Solve a triangle";
 char strMenuMainArea[100] = "Calculate the area of a triangle";
 char strMenuMainNotable[100] = "Calculate the notable lines of a triangle";
@@ -42,6 +53,17 @@ char strNoticeInexistentOption[100] = "No such option exists.\nPlease select a v
 char strNoticeClosingProgram[100] = "Closing the program...";
 char strNoticeEnterOption[100] = "Enter the corresponding number to your selection: ";
 char strNoticeSelectAnOption[100] = "Select an option below: ";
+char strNoticeTriangleInequality[100] = "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+
+char strNoticeEnterAngleBetweenSides[100] = "Enter the angle between the two sides (angle C): ";
+char strNoticeEnter2Sides[100] = "Enter the length of the two known sides (sides a and b): ";
+
+char strNoticeEnterAngleOppositeToSide[100] = "Enter the angle opposite to the known side (angle A): ";
+char strNoticeEnterOtherKnownAngle[100] = "Enter the other known angle (angle B): ";
+char strNoticeEnterSideOppositeToAngle[100] = "Enter the length of the known side (side a): ";
+
+char strNoticeEnterAll3Sides[100] = "Enter the length of all three sides: ";
+
 
 char strSlvTriInformationQuestion[100] = "What information do you know about the triangle?";
 char strSlvTriOption2Side1Angle[100] = "Two sides and the angle between them";
@@ -62,6 +84,17 @@ void setLanguageHUN() {
     strcpy(strTitleLanguageSelection, "+===NYELV=KIVALASZTASA==============+");
     strcpy(strTitleBonusFeatures, "+===BONUSZ=FUNKCIOK=================+");
     strcpy(strTitleMisc, "+===EGYEB===========================+");
+
+    strcpy(strLengthSideA, "a oldal hossza: ");
+    strcpy(strLengthSideB, "b oldal hossza: ");
+    strcpy(strLengthSideC, "c oldal hossza: ");
+    strcpy(strSizeAngleA, "A szog merteke: ");
+    strcpy(strSizeAngleB, "B szog merteke: ");
+    strcpy(strSizeAngleC, "C szog merteke: ");
+
+    strcpy(strTitleSlvTri2Side1Angle, "+=+ KET OLDAL ES AZ ALTALUK KOZREZART SZOG +=+");
+    strcpy(strTitleSlvTri1Side2Angle, "+=+ KET SZOG ES VALMELYIK SZOGGEL SZEMBENFEKVO OLDAL +=+");
+    strcpy(strTitleSlvTri3Side0Angle, "+=+ MINDHAROM OLDAL +=+");
     //Title screen options
     strcpy(strMenuMainSolveTriangle, "Haromszog megoldasa");
     strcpy(strMenuMainArea, "Haromszog teruletenek kiszamitasa");
@@ -84,11 +117,22 @@ void setLanguageHUN() {
     strcpy(strNoticeClosingProgram, "Program bezarasa...");
     strcpy(strNoticeEnterOption, "Add meg a kivalasztott menupont sorszamat: ");
     strcpy(strNoticeSelectAnOption, "Valassz egyet az alabbi menupontok kozul: ");
+    strcpy(strNoticeTriangleInequality, "Hibas oldalhosszak. Olyan pozitiv ertekeket adj meg, amelyek teljesitik a haromszog egyenlotlenseget (a+b>c): ");
     //Solving of a triangle
     strcpy(strSlvTriInformationQuestion, "Milyen informaciokat ismersz a haromszogrol?");
     strcpy(strSlvTriOption2Side1Angle, "Ket oldalt es az altaluk kozrezart szoget");
     strcpy(strSlvTriOption1Side2Angle, "Ket szoget es valamelyik szoggel szembenfekvo oldalt");
     strcpy(strSlvTriOption3Side0Angle, "Mindharom oldalt");
+
+    strcpy(strNoticeEnterAngleBetweenSides, "Add meg ket ismert oldal altal kozrezart szog merteket: ");
+    strcpy(strNoticeEnter2Sides, "Add meg a ket ismert oldal hosszat: ");
+
+    strcpy(strNoticeEnterAngleOppositeToSide, "Add meg az ismert oldallal szembenfekvo szog merteket (A szog): ");
+    strcpy(strNoticeEnterOtherKnownAngle, "Add meg a masik szog merteket (B szog)");
+    strcpy(strNoticeEnterSideOppositeToAngle, "Add meg az imsert oldal hosszat (a oldal): ");
+
+    strcpy(strNoticeEnterAll3Sides, "Add meg mindharom oldal hosszat (a, b es c oldalak): ");
+
 }
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
@@ -113,12 +157,12 @@ void coutSeparator() { // Void to output a separator line
 }  
 
 void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, float angleC) { // Void to output the solved triangle
-    cout << "Side a: " << a << endl;
-    cout << "Side b: " << b << endl;
-    cout << "Side c: " << c << endl;
-    cout << "Angle A: " << angleA << endl;
-    cout << "Angle B: " << angleB << endl;
-    cout << "Angle C: " << angleC << endl;
+    cout << strLengthSideA << a << endl;
+    cout << strLengthSideB << b << endl;
+    cout << strLengthSideC << c << endl;
+    cout << strSizeAngleA << angleA << endl;
+    cout << strSizeAngleB << angleB << endl;
+    cout << strSizeAngleC << angleC << endl;
 }
 
 void settingsAngleUnits() { // Settings menu for selecting the unit of measurement for angles
@@ -160,10 +204,10 @@ void settingsLanguage() { // Settings menu for selecting the language of the pro
 
 void calculateOption101() { // Void using Law Of Cosines
     float a, b, c, angleA, angleB, angleC;
-    cout << "TWO SIDES AND THE ANGLE BETWEEN THEM\n\n";
-    cout << "Enter the length of the two known sides (sides a and b): ";
+    cout << strTitleSlvTri2Side1Angle << endl << endl;
+    cout << strNoticeEnter2Sides;
     cin >> a >> b;
-    cout << "Enter the angle between the two sides (in " << (radians ? "radians" : "degrees") << "): ";
+    cout << strNoticeEnterAngleBetweenSides;
     cin >> angleC;
     while (radians ? (angleC <= 0 || angleC >= M_PI) : (angleC <= 0 || angleC >= 180)) {
         cout <<  (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
@@ -184,17 +228,17 @@ void calculateOption101() { // Void using Law Of Cosines
 
 void calculateOption102() { // Void using Law Of Sines
     float a, b, c, angleA, angleB, angleC;
-    cout << "ONE SIDE AND TWO ANGLES\n\n";
-    cout << "Enter the length of the known side (side a): ";
+    cout << strTitleSlvTri1Side2Angle << endl << endl;
+    cout << strNoticeEnterSideOppositeToAngle;
     cin >> a;
-    cout << "Enter the angle opposite to the known side (angle A, in " << (radians ? "radians" : "degrees") << "): ";
+    cout << strNoticeEnterAngleOppositeToSide;
     cin >> angleA;
     while (radians ? (angleA <= 0 || angleA >= M_PI) : (angleA <= 0 || angleA >= 180)) {
         cout <<  (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
         cin >> angleA;
     }
 
-    cout << "Enter the other known angle (angle B, in " << (radians ? "radians" : "degrees") << "): ";
+    cout << strNoticeEnterOtherKnownAngle;
     cin >> angleB;
     while (radians ? (angleB <= 0 || angleB >= M_PI) : (angleB <= 0 || angleB >= 180)) {
         cout <<  (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
@@ -222,12 +266,12 @@ void calculateOption102() { // Void using Law Of Sines
 
 void calculateOption103() { // Void using Law Of Cosines to find angles
     float a, b, c, angleA, angleB, angleC;
-    cout << "ALL THREE SIDES\n\n";
-    cout << "Enter the lengths of the three sides (sides a, b, and c): ";
+    cout << strTitleSlvTri3Side0Angle << endl << endl;
+    cout << strNoticeEnterAll3Sides;
     cin >> a >> b >> c;
     
     while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
-        cout << "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+        cout << strNoticeTriangleInequality;
         cin >> a >> b >> c;
     }
 
