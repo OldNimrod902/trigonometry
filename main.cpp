@@ -4,7 +4,6 @@ using namespace std;
 
 bool exitProgram = false;
 bool radians = false;
-char language = 'E'; // Default language is English
 
 // Language initalization
 
@@ -27,6 +26,10 @@ char strLengthSideC[100] = "Side c: ";
 char strSizeAngleA[100] = "Angle A";
 char strSizeAngleB[100] = "Angle B";
 char strSizeAngleC[100] = "Angle C";
+char strSinAngle[100] = "The sine of the angle is ";
+char strCosAngle[100] = "The cosine of the angle is ";
+char strTanAngle[100] = "The tangent of the angle is ";
+char strCotAngle[100] = "The cotangent of the angle is  ";
 
 char strTitleSlvTri2Side1Angle[100] = "+=+ TWO SIDES AND THE ANGLE BETWEEN THEM +=+";
 char strTitleSlvTri1Side2Angle[100] = "+=+ TWO ANGLES AND A SIDE OPPOSITE TO ONE OF THEM +=+";
@@ -65,11 +68,52 @@ char strNoticeEnterSideOppositeToAngle[100] = "Enter the length of the known sid
 
 char strNoticeEnterAll3Sides[100] = "Enter the length of all three sides: ";
 
+char strNoticeEnterAngle[100] = "Enter the angle: ";
+
 
 char strSlvTriInformationQuestion[100] = "What information do you know about the triangle?";
 char strSlvTriOption2Side1Angle[100] = "Two sides and the angle between them";
 char strSlvTriOption1Side2Angle[100] = "Two angles and a side opposite to one of them";
 char strSlvTriOption3Side0Angle[100] = "All three sides";
+
+char strAreaTriInformationQuestion[100] = "How do you want to calculate the area of the triangle?";
+char strAreaTriOptionHeron[100] = "Using all three sides (Heron\'s formula)";
+char strAreaTriOptionBH[100] = "Using the base and height";
+char strAreaTriNoticeEnterHeron[100] = "Enter the lengths of all three sides (sides a, b, and c): ";
+char strAreaTriNoticeEnterBH[100] = "Enter the base and height of the triangle: ";
+char strAreaTriResult[100] = "The area of the triangle is ";
+
+char strNotableLinesInformationQuestion[100] = "Which notable line do you want to calculate?";
+char strNotableLinesOptionMedian[100] = "Median";
+char strNotableLinesOptionAltitude[100] = "Altitude";
+char strNotableLinesOptionAngleBisector[100] = "Angle bisector";
+
+char strNotableLinesMedianA[100] = "The length of the median from vertex A is ";
+char strNotableLinesMedianB[100] = "The length of the median from vertex B is ";
+char strNotableLinesMedianC[100] = "The length of the median from vertex C is ";
+char strNotableLinesAltitudeA[100] = "The length of the altitude from vertex A is ";
+char strNotableLinesAltitudeB[100] = "The length of the altitude from vertex B is ";
+char strNotableLinesAltitudeC[100] = "The length of the altitude from vertex C is ";
+char strNotableLinesAngleBisectorA[100] = "The length of the angle bisector from vertex A is ";
+char strNotableLinesAngleBisectorB[100] = "The length of the angle bisector from vertex B is ";
+char strNotableLinesAngleBisectorC[100] = "The length of the angle bisector from vertex C is ";
+
+char strCircumradiusResult[100] = "The circumradius of the triangle is ";
+char strInradiusResult[100] = "The inradius of the triangle is ";
+
+char strPythNoteRightTri[200] = "NOTE: These features only work with right triangles.";
+char strPythInformationQuestion[100] = "What would you like to calculate?";
+char strPythOptionHypo[100] = "The length of the hypotenuse (longest side)";
+char strPythOptionCath[100] = "The length of a cathetus";
+char strPythNoticeEnter2Cath[100] = "Enter the lengths of the two catheti: ";
+char strPythNoticeEnter1Cath[100] = "Enter the length of one cathetus: ";
+char strPythNoticeEnterHypo[100] = "Enter the length of the hypotenuse: ";
+char strPythResultHypo[100] = "The length of the hypotenuse is ";
+char strPythResultCath[100] = "The length of the other cathetus is ";
+
+char strUnitSelectionQuestion[100] = "Select the unit of measurement for angles:";
+char strUnitSelectionRadian[100] = "Radians";
+char strUnitSelectionDegree[100] = "Degrees";
 
 void setLanguageHUN() {
     //Title screen titles
@@ -78,6 +122,7 @@ void setLanguageHUN() {
     strcpy(strTitleAreaTriangle, "+===HAROMSZOG=TERULETE==============+");
     strcpy(strTitleNotableLines, "+===HAROMSZOG=NEVEZETES=VONALAI=====+");
     strcpy(strTitleRadiusCalculator, "+===KOREIRT=ES=BELERIRT=KOR=SUGARA==+");
+    
     strcpy(strTitlePythagorean, "+===PITAGORASZ=TETEL================+");
     strcpy(strTitleSinCosCalculator, "+===SZINUSZ=ES=KOSZINUSZ=SZAMOLO====+");
     strcpy(strTitleTanCotCalculator, "+===TANGENS=ES=KOTANGENS=SZAMOLO====+");
@@ -92,6 +137,10 @@ void setLanguageHUN() {
     strcpy(strSizeAngleA, "A szog merteke: ");
     strcpy(strSizeAngleB, "B szog merteke: ");
     strcpy(strSizeAngleC, "C szog merteke: ");
+    strcpy(strSinAngle, "A szog szinusza ");
+    strcpy(strCosAngle, "A szog koszinusza ");
+    strcpy(strTanAngle, "A szog tangense ");
+    strcpy(strCotAngle, "A szog kotangense ");
 
     strcpy(strTitleSlvTri2Side1Angle, "+=+ KET OLDAL ES AZ ALTALUK KOZREZART SZOG +=+");
     strcpy(strTitleSlvTri1Side2Angle, "+=+ KET SZOG ES VALMELYIK SZOGGEL SZEMBENFEKVO OLDAL +=+");
@@ -135,6 +184,46 @@ void setLanguageHUN() {
 
     strcpy(strNoticeEnterAll3Sides, "Add meg mindharom oldal hosszat (a, b es c oldalak): ");
 
+    strcpy(strNoticeEnterAngle, "Add meg a szoget: ");
+
+    strcpy(strAreaTriInformationQuestion, "Hogyan szeretned kiszamolni a haromszog teruletet?");
+    strcpy(strAreaTriOptionHeron, "Mindharom oldal segitsegevel (Heron keplete)");
+    strcpy(strAreaTriOptionBH, "Az alap es hozza tartozo magassag segitsegevel");
+    strcpy(strAreaTriNoticeEnterHeron, "Add meg mindharom oldal hosszat (a, b es c oldalak): ");
+    strcpy(strAreaTriNoticeEnterBH, "Add meg a haromszog valamely oldalanak hosszat es a hozza tartozo magassagot: ");
+    strcpy(strAreaTriResult, "A haromszog terulete ");
+
+    strcpy(strNotableLinesInformationQuestion, "A haromszog melyik nevezetes vonalait szeretned kiszamolni?");
+    strcpy(strNotableLinesOptionAltitude, "Magassagok hosszat");
+    strcpy(strNotableLinesOptionAngleBisector, "Szogfelezok hosszat");
+    strcpy(strNotableLinesOptionMedian, "Oldalfelezok hosszat");
+
+    strcpy(strNotableLinesMedianA, "A szogbol huzott oldalfelezo hossza ");
+    strcpy(strNotableLinesMedianB, "B szogbol huzott oldalfelezo hossza ");
+    strcpy(strNotableLinesMedianC, "C szogbol huzott oldalfelezo hossza ");
+    strcpy(strNotableLinesAltitudeA, "A szogbol huzott magassag hossza ");
+    strcpy(strNotableLinesAltitudeB, "B szogbol huzott magassag hossza ");
+    strcpy(strNotableLinesAltitudeC, "C szogbol huzott magassag hossza ");
+    strcpy(strNotableLinesAngleBisectorA, "A szogbol huzott szogfelezo hossza ");
+    strcpy(strNotableLinesAngleBisectorB, "B szogbol huzott szogfelezo hossza ");
+    strcpy(strNotableLinesAngleBisectorC, "C szogbol huzott szogfelezo hossza ");
+
+    strcpy(strCircumradiusResult, "A haromszog koreirt kor hossza: ");
+    strcpy(strInradiusResult, "A haromszogbe beleirt kor hossza: ");
+
+    strcpy(strPythNoteRightTri, "MEGJEGYZES: Ez a funkcio kizarolag derekszogu haromszogekkel mukodik");
+    strcpy(strPythInformationQuestion, "Mit szeretnel kiszamolni?");
+    strcpy(strPythOptionCath, "A haromszog egyik befogojat");
+    strcpy(strPythOptionHypo, "A haromszog atfogojat");
+    strcpy(strPythNoticeEnter2Cath, "Add meg a haromszog ket befogojanak hosszat: ");
+    strcpy(strPythNoticeEnter1Cath, "Add meg a haromszog egyik befogojanak hosszat: ");
+    strcpy(strPythNoticeEnterHypo, "Add meg a haromszog atfogojanak a hosszat: ");
+    strcpy(strPythResultHypo, "A haromszog atfogojanak hossza ");
+    strcpy(strPythResultCath, "A haromszog masik befogojanak hossza ");
+
+    strcpy(strUnitSelectionQuestion, "Valaszd ki a szogek mertekegyseget:");
+    strcpy(strUnitSelectionDegree, "Szogek");
+    strcpy(strUnitSelectionRadian, "Radianok");
 }
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
@@ -170,9 +259,9 @@ void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, f
 void settingsAngleUnits() { // Settings menu for selecting the unit of measurement for angles
     cout << endl << strTitleAngleUnits << endl;
     
-    cout << "Select the unit of measurement for angles:" << endl << endl;
-    cout << "[1] Degrees" << endl;
-    cout << "[2] Radians" << endl;
+    cout << strUnitSelectionQuestion << endl << endl;
+    cout << "[1] " << strUnitSelectionDegree << endl;
+    cout << "[2] " << strUnitSelectionRadian << endl;
     coutSeparator();
     cout << strNoticeEnterOption;
     int option; cin >> option;
@@ -187,20 +276,18 @@ void settingsAngleUnits() { // Settings menu for selecting the unit of measureme
 void settingsLanguage() { // Settings menu for selecting the language of the program
     cout << endl << strTitleLanguageSelection << endl;
     
+    cout << "Please note, that currently this change couldn\'t be undone, unless you restart the app." << endl;
     cout << "Select the language of the program:" << endl << endl;
-    cout << "[E] English" << endl;
     cout << "[H] Magyar (Hungarian)" << endl;
     coutSeparator();
     cout << "Enter the corresponding letter to your selection: ";
     char option; cin >> option;
     if(option == 'H' || option == 'h') {
-        language = 'H';
         cout << "Magyar nyelv kivalasztva." << endl;
         setLanguageHUN();
     }
     else {
-        language = 'E';
-        cout << "Language set to English." << endl;
+        cout << "No change has been made" << endl;
     }
 }
 
@@ -296,9 +383,9 @@ void calculateMedian(float a, float b, float c) { // Void to calculate the media
     medianA=0.5*sqrt(2*b*b+2*c*c-a*a);
     medianB=0.5*sqrt(2*a*a+2*c*c-b*b);
     medianC=0.5*sqrt(2*a*a+2*b*b-c*c);
-    cout << "Median from vertex A: " << medianA << endl;
-    cout << "Median from vertex B: " << medianB << endl;
-    cout << "Median from vertex C: " << medianC << endl;
+    cout << strNotableLinesMedianA << medianA << endl;
+    cout << strNotableLinesMedianB << medianB << endl;
+    cout << strNotableLinesMedianC << medianC << endl;
 }
 
 void calculateAltitude(float a, float b, float c) { // Void to calculate the altitudes of a triangle with its side lengths
@@ -308,9 +395,9 @@ void calculateAltitude(float a, float b, float c) { // Void to calculate the alt
     altitudeB=2*sqrt(s*(s-a)*(s-b)*(s-c))/b;
     altitudeC=2*sqrt(s*(s-a)*(s-b)*(s-c))/c;
 
-    cout << "Altitude from vertex A: " << altitudeA << endl;
-    cout << "Altitude from vertex B: " << altitudeB << endl;
-    cout << "Altitude from vertex C: " << altitudeC << endl;
+    cout << strNotableLinesAltitudeA << altitudeA << endl;
+    cout << strNotableLinesAltitudeB << altitudeB << endl;
+    cout << strNotableLinesAltitudeC << altitudeC << endl;
 }
 
 void calculateAngleBisector(float a, float b, float c) { // Void to calculate the angle bisectors of a triangle with its side lengths
@@ -321,9 +408,9 @@ void calculateAngleBisector(float a, float b, float c) { // Void to calculate th
     bisectorA=(2*b*c*cos(halfA))/(b+c);
     bisectorB=(2*a*c*cos(halfB))/(a+c);
     bisectorC=(2*a*b*cos(halfC))/(a+b);
-    cout << "Angle bisector from vertex A: " << bisectorA << endl;
-    cout << "Angle bisector from vertex B: " << bisectorB << endl;
-    cout << "Angle bisector from vertex C: " << bisectorC << endl;
+    cout << strNotableLinesAngleBisectorA << bisectorA << endl;
+    cout << strNotableLinesAngleBisectorB << bisectorB << endl;
+    cout << strNotableLinesAngleBisectorC << bisectorC << endl;
 }
 
 // First submenus from the main menu 
@@ -354,23 +441,23 @@ void calculateMenuSolveTriangle() {
 
 void calculateMenuArea() {
     int option;
-    cout << endl << endl<< strTitleAreaTriangle << endl << "How do you want to calculate the area of the triangle?" << endl << endl;
-    cout << "[1] Using three sides (Heron's formula)" << endl;
-    cout << "[2] Using the base and height" << endl;
+    cout << endl << endl<< strTitleAreaTriangle << endl << strAreaTriInformationQuestion << endl << endl;
+    cout << "[1] " << strAreaTriOptionHeron << endl;
+    cout << "[2] " << strAreaTriOptionBH << endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
 
     if(option==1) {
         float a, b, c;
-        cout << "Enter the lengths of all three sides (sides a, b, and c): ";
+        cout << strAreaTriNoticeEnterHeron;
         cin >> a >> b >> c;
-        cout << "Area of the triangle is " << areaHeron(a, b, c) << endl;
+        cout << strAreaTriResult << areaHeron(a, b, c) << endl;
     }
     else if(option==2) {
         float base, height;
-        cout << "Enter the base and height of the triangle: ";
+        cout << strAreaTriNoticeEnterBH;
         cin >> base >> height;
-        cout << "Area of the triangle is " << areaBaseHeight(base, height) << endl;
+        cout << strAreaTriResult << areaBaseHeight(base, height) << endl;
     }
     else {
         cout << strNoticeInexistentOption << endl;
@@ -389,10 +476,10 @@ void calculateMenuNotableLines() {
         cin >> a >> b >> c;
     }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
 
-    cout << endl << "Which notable line do you want to calculate?" << endl << endl;
-    cout << "[1] Median" << endl;
-    cout << "[2] Altitude" << endl;
-    cout << "[3] Angle bisector" << endl;
+    cout << endl << strNotableLinesInformationQuestion << endl << endl;
+    cout << "[1] " << strNotableLinesOptionMedian << endl;
+    cout << "[2] " << strNotableLinesOptionAltitude << endl;
+    cout << "[3] " << strNotableLinesOptionAngleBisector<< endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
 
@@ -426,33 +513,33 @@ void calculateMenuRadius() {
     float circumradius=(a*b*c)/(4*area);
     float inradius=area/s;
 
-    cout << "Circumradius of the triangle is " << circumradius << endl;
-    cout << "Inradius of the triangle is " << inradius << endl;
+    cout << strCircumradiusResult << circumradius << endl;
+    cout << strInradiusResult << inradius << endl;
 }
 
 void bonusMenuPythagorean() {
     int option;
     cout << endl << endl << strTitlePythagorean << endl;
-    cout << "NOTE: These features only work with right triangles." << endl;
-    cout << "Select an option below:" << endl << endl;
-    cout << "[1] Find the hypotenuse (longest side)" << endl;
-    cout << "[2] Find a cathetus" << endl;
+    cout << strPythNoteRightTri << endl;
+    cout << strPythInformationQuestion << endl << endl;
+    cout << "[1] " << strPythOptionHypo << endl;
+    cout << "[2] " << strPythOptionCath << endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
 
     if(option==1) {
         float a, b;
-        cout << "Enter the lengths of the two catheti: ";
+        cout << strPythNoticeEnter2Cath;
         cin >> a >> b;
-        cout << "The length of the hypotenuse is " << pythagoreanTheorem(a, b) << endl;
+        cout << strPythResultHypo << pythagoreanTheorem(a, b) << endl;
     }
     else if(option==2) {
         float hypo, cath1;
-        cout << "Enter the length of the hypotenuse: ";
+        cout << strPythNoticeEnterHypo;
         cin >> hypo;
-        cout << "Enter the length of one cathetus: ";
+        cout << strPythNoticeEnter1Cath;
         cin >> cath1;
-        cout << "The length of the other cathetus is " << pythagoreanForCathetus(hypo, cath1) << endl;
+        cout << strPythResultCath << pythagoreanForCathetus(hypo, cath1) << endl;
     }
     else {
         cout << strNoticeInexistentOption << endl;
@@ -464,7 +551,7 @@ void bonusMenuSinCosCalc() {
     float angle;
     cout << endl << endl << strTitleSinCosCalculator << endl;
 
-    cout << "Enter the angle: ";
+    cout << strNoticeEnterAngle;
     cin >> angle;
     while (angle == 0 || (radians ? (angle == M_PI) : (angle == 180))) {
         cout << (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
@@ -473,15 +560,15 @@ void bonusMenuSinCosCalc() {
     if(!radians) {
         angle=angle*M_PI /180;
     }
-    cout << "The sine of the angle is   " << sin(angle) << endl;
-    cout << "The cosine of the angle is " << cos(angle) << endl;
+    cout << strSinAngle << sin(angle) << endl;
+    cout << strCosAngle << cos(angle) << endl;
 }
 
 void bonusMenuTanCotCalc() {
     float angle;
     cout << endl << endl << strTitleTanCotCalculator << endl;
 
-    cout << "Enter the angle (in " << (radians ? "radians" : "degrees") << "): ";
+    cout << strNoticeEnterAngle;
     cin >> angle;
     while (angle == 0 || (radians ? (angle == M_PI) : (angle == 180))) {
         cout << (radians ? strNoticeInvalidAngleRad : strNoticeInvalidAngleDeg);
@@ -490,8 +577,8 @@ void bonusMenuTanCotCalc() {
     if(!radians) {
         angle=angle*M_PI /180;
     }
-    cout << "The tangent of the angle is   " << tan(angle) << endl;
-    cout << "The cotangent of the angle is " << 1/tan(angle) << endl;
+    cout << strTanAngle << tan(angle) << endl;
+    cout << strCotAngle << 1/tan(angle) << endl;
 }
 
 void selection() {
@@ -551,7 +638,8 @@ void selection() {
 
 int main() {
     cout << "+====+ TRIGONOMETRY CALCULATOR +====+" << endl;
-    cout << "[~] made by @nnimrod704 for Terra [~]" << endl << endl;
+    cout << "[~] made by @nnimrod704 for Terra [~]" << endl;
+    cout << "[+] updated for the 3rd prep week [+]" << endl << endl;
     do {
         selection();
     } while (!exitProgram);
