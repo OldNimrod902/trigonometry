@@ -25,9 +25,9 @@ char strTitleHelpMenu[100] = "+===FAQ=============================+";
 char strLengthSideA[100] = "Side a: ";
 char strLengthSideB[100] = "Side b: ";
 char strLengthSideC[100] = "Side c: ";
-char strSizeAngleA[100] = "Angle A";
-char strSizeAngleB[100] = "Angle B";
-char strSizeAngleC[100] = "Angle C";
+char strSizeAngleA[100] = "Angle A: ";
+char strSizeAngleB[100] = "Angle B: ";
+char strSizeAngleC[100] = "Angle C: ";
 char strSinAngle[100] = "The sine of the angle is ";
 char strCosAngle[100] = "The cosine of the angle is ";
 char strTanAngle[100] = "The tangent of the angle is ";
@@ -60,6 +60,7 @@ char strNoticeClosingProgram[100] = "Closing the program...";
 char strNoticeEnterOption[100] = "Enter the corresponding number to your selection: ";
 char strNoticeSelectAnOption[100] = "Select an option below: ";
 char strNoticeTriangleInequality[200] = "Invalid side lengths. Please enter positive values that satisfy the triangle inequality (a+b>c): ";
+char strNoticeTriangleSideLengthsPositive[200] = "Invalid side length(s). Please enter positive value(s): ";
 char strNoticeTipFor3Sides[200] = "NOTE: If you do not yet know all the side lengths,\nyou can use the triangle solver to find them first.";
 
 char strNoticeEnterAngleBetweenSides[100] = "Enter the angle between the two sides (angle C): ";
@@ -120,6 +121,8 @@ char strUnitSelectionDegree[100] = "Degrees";
 char strHelpText[2000] = "Q: How can I navigate the menus?\nA: When prompted, you only need to enter the number of a submenu,\nnothing else (e.g. you don\'t need to enter the parantheses)\nBut if you managed to see this text, you most certanly figured that out! (:\n\nQ: How do I enter multiple values?\nA: If you need to enter multiple values for a problem,\nyou need to seperate them with a blank space (e.g. you cannot use commas)\n\nQ: I don\'t see the results of my calculation, why is that?\nA: Your answers are there, but when a calculation is completed\nthe main menu also pops up after it.\nYou may need to scroll up to see the results of your calculations.";
 char strHelpNoticeExit[100] = "Enter any number to go back to the main menu ";
 
+
+
 void setLanguageHUN() {
     //Title screen titles
     strcpy(strTitleMainMenu, "+===FOMENU==========================+");
@@ -175,6 +178,7 @@ void setLanguageHUN() {
     strcpy(strNoticeEnterOption, "Add meg a kivalasztott menupont sorszamat: ");
     strcpy(strNoticeSelectAnOption, "Valassz egyet az alabbi menupontok kozul: ");
     strcpy(strNoticeTriangleInequality, "Hibas oldalhosszak. Olyan pozitiv ertekeket adj meg, amelyek teljesitik a haromszog egyenlotlenseget (a+b>c): ");
+    strcpy(strNoticeTriangleSideLengthsPositive, "Hibas oldalhossz(ak). Pozitiv ertek(ek)et adj meg: ");
     strcpy(strNoticeTipFor3Sides, "TIPP: Ha meg nem tudod a haromszog mindharom oldalat,\nakkor hasznald a Haromszog Megoldasa funkciot.");
     //Solving of a triangle
     strcpy(strSlvTriInformationQuestion, "Milyen informaciokat ismersz a haromszogrol?");
@@ -234,6 +238,13 @@ void setLanguageHUN() {
 
     strcpy(strHelpNoticeExit, "A kilepeshez adj meg egy akarmilyen szamot: ");
     strcpy(strHelpText, "K: Hogyan tudok navigalni a menuk kozott?\nV: Mikor a program megker, kizarolag az almenu szamat kell megadd\n(pl. nem kell beirnod a zarojeleket)\nDe ha ezt olvasod, akkor erre mar ugyis rajottel! (:\n\nK: Hogyan irok be tobb erteket?\nV: Ha egy problemahoz a program egyszerre tobb szamot is ker,\nakkor azokat szokozzel elvalasztva add meg (pl. nem hasznalhatsz vesszoket)\n\nK: Nem latom az eredmenyeket, miert van ez?\nV: A kerdeseidre ott van a valasz, csak mikor egy szamitas elvegzodik,\na fomenu ismet megjelenik.\nLehet, hogy fennebb kell gorgess, ahhoz hogy lathasd az eredmenyeket.");
+}
+
+bool isTriangleValid(float a, float b, float c) {
+    if(a+b>c && b+c>a && a+c>b && a>0 && b>0 && c>0) {
+        return true;
+    }
+    return false;
 }
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
@@ -314,6 +325,10 @@ void calculateOption101() { // Void using Law Of Cosines
     cout << strTitleSlvTri2Side1Angle << endl << endl;
     cout << strNoticeEnter2Sides;
     cin >> a >> b;
+    while(a<=0 || b<=0) {
+        cout << strNoticeTriangleSideLengthsPositive;
+        cin >> a >> b;
+    }
     cout << strNoticeEnterAngleBetweenSides;
     cin >> angleC;
     while (radians ? (angleC <= 0 || angleC >= M_PI) : (angleC <= 0 || angleC >= 180)) {
@@ -338,6 +353,10 @@ void calculateOption102() { // Void using Law Of Sines
     cout << strTitleSlvTri1Side2Angle << endl << endl;
     cout << strNoticeEnterSideOppositeToAngle;
     cin >> a;
+    while(a<=0) {
+        cout << strNoticeTriangleSideLengthsPositive;
+        cin >> a;
+    }
     cout << strNoticeEnterAngleOppositeToSide;
     cin >> angleA;
     while (radians ? (angleA <= 0 || angleA >= M_PI) : (angleA <= 0 || angleA >= 180)) {
@@ -377,7 +396,7 @@ void calculateOption103() { // Void using Law Of Cosines to find angles
     cout << strNoticeEnterAll3Sides;
     cin >> a >> b >> c;
     
-    while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
+    while (!isTriangleValid(a, b, c)) {
         cout << strNoticeTriangleInequality;
         cin >> a >> b >> c;
     }
@@ -457,7 +476,7 @@ void calculateMenuSolveTriangle() {
     }
 }
 
-void calculateMenuArea() {
+void calculateMenuArea() { //BUGFREE
     int option;
     cout << endl << endl<< strTitleAreaTriangle << endl << strAreaTriInformationQuestion << endl << endl;
     cout << "[1] " << strAreaTriOptionHeron << endl;
@@ -469,12 +488,20 @@ void calculateMenuArea() {
         float a, b, c;
         cout << strAreaTriNoticeEnterHeron;
         cin >> a >> b >> c;
+        while(!isTriangleValid(a, b, c)) {
+            cout << strNoticeTriangleInequality;
+            cin >> a >> b >> c;
+        }
         cout << strAreaTriResult << areaHeron(a, b, c) << endl;
     }
     else if(option==2) {
         float base, height;
         cout << strAreaTriNoticeEnterBH;
         cin >> base >> height;
+        while(base<=0 || height<=0) {
+            strNoticeTriangleSideLengthsPositive;
+            cin >> base >> height;
+        }
         cout << strAreaTriResult << areaBaseHeight(base, height) << endl;
     }
     else {
@@ -483,16 +510,18 @@ void calculateMenuArea() {
     }
 }
 
-void calculateMenuNotableLines() {
+void calculateMenuNotableLines() { //BUGFREE
     int option;
     float a, b, c;
     cout << endl << endl << strTitleNotableLines << endl;;
     cout << strNoticeTipFor3Sides << endl << endl; 
 
-    do{
-        cout << strNoticeEnterAll3Sides;
+    cout << strNoticeEnterAll3Sides;
+    cin >> a >> b >> c;
+    while(!isTriangleValid(a, b, c)) {
+        cout << strNoticeTriangleInequality;
         cin >> a >> b >> c;
-    }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
+    }
 
     cout << endl << strNotableLinesInformationQuestion << endl << endl;
     cout << "[1] " << strNotableLinesOptionMedian << endl;
@@ -516,16 +545,17 @@ void calculateMenuNotableLines() {
     }
 }
 
-void calculateMenuRadius() {
+void calculateMenuRadius() { //BUGFREE
     float a, b, c;
     cout << endl << endl << strTitleRadiusCalculator << endl << endl;
 
     cout << strNoticeTipFor3Sides << endl << endl; 
     cout << strNoticeEnterAll3Sides;
-    do{
+    cin >> a >> b >> c;
+    while(!isTriangleValid(a, b, c)) {
+        cout << strNoticeTriangleInequality;
         cin >> a >> b >> c;
-    }while (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a);
-
+    }
     float s=(a+b+c)/2;
     float area=sqrt(s*(s-a)*(s-b)*(s-c));
     float circumradius=(a*b*c)/(4*area);
@@ -535,7 +565,7 @@ void calculateMenuRadius() {
     cout << strInradiusResult << inradius << endl;
 }
 
-void bonusMenuPythagorean() {
+void bonusMenuPythagorean() { //BUGFREE
     int option;
     cout << endl << endl << strTitlePythagorean << endl;
     cout << strPythNoteRightTri << endl;
@@ -549,14 +579,26 @@ void bonusMenuPythagorean() {
         float a, b;
         cout << strPythNoticeEnter2Cath;
         cin >> a >> b;
+        while(a<=0 || b<=0) {
+            cout << strNoticeTriangleSideLengthsPositive;
+            cin >> a >> b;
+        }
         cout << strPythResultHypo << pythagoreanTheorem(a, b) << endl;
     }
     else if(option==2) {
         float hypo, cath1;
         cout << strPythNoticeEnterHypo;
         cin >> hypo;
+        while(hypo<=0) {
+            cout << strNoticeTriangleSideLengthsPositive;
+            cin >> hypo;
+        }
         cout << strPythNoticeEnter1Cath;
         cin >> cath1;
+        while(cath1<=0) {
+            cout << strNoticeTriangleSideLengthsPositive;
+            cin >> cath1;
+        }
         cout << strPythResultCath << pythagoreanForCathetus(hypo, cath1) << endl;
     }
     else {
@@ -565,7 +607,7 @@ void bonusMenuPythagorean() {
     }
 }
 
-void bonusMenuSinCosCalc() {
+void bonusMenuSinCosCalc() { //BUGFREE
     float angle;
     cout << endl << endl << strTitleSinCosCalculator << endl;
 
@@ -582,7 +624,7 @@ void bonusMenuSinCosCalc() {
     cout << strCosAngle << cos(angle) << endl;
 }
 
-void bonusMenuTanCotCalc() {
+void bonusMenuTanCotCalc() { //BUGFREE
     float angle;
     cout << endl << endl << strTitleTanCotCalculator << endl;
 
