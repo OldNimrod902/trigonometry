@@ -19,6 +19,8 @@ char strTitleAngleUnits[100] = "+===UNIT=OF=MEASUREMENT=============+";
 char strTitleLanguageSelection[100] = "+===LANGUAGE=SELECTION==============+";
 char strTitleBonusFeatures[100] = "+===BONUS=FEATURES==================+";
 char strTitleMisc[100] = "+===MISCELLANEOUS===================+";
+char strTitleHelpMenu[100] = "+===HELP============================+";
+
 
 char strLengthSideA[100] = "Side a: ";
 char strLengthSideB[100] = "Side b: ";
@@ -45,6 +47,7 @@ char strMenuMainTanCot[100] = "Tangent and cotangent value calculator";
 char strMenuMainExit[100] = "Exit";
 char strMenuMainAngleUnitChanger[100] = "Change angle unit";
 char strMenuMainLanguage[100] = "Change language";
+char strMenuMainHelp[100] = "Help";
 
 char strMenuMainAngleStatusBeginning[100] = "Angles are currently set to ";
 char strMenuMainAngleStatusDeg[100] = "degrees";
@@ -69,7 +72,6 @@ char strNoticeEnterSideOppositeToAngle[100] = "Enter the length of the known sid
 char strNoticeEnterAll3Sides[100] = "Enter the length of all three sides: ";
 
 char strNoticeEnterAngle[100] = "Enter the angle: ";
-
 
 char strSlvTriInformationQuestion[100] = "What information do you know about the triangle?";
 char strSlvTriOption2Side1Angle[100] = "Two sides and the angle between them";
@@ -115,6 +117,9 @@ char strUnitSelectionQuestion[100] = "Select the unit of measurement for angles:
 char strUnitSelectionRadian[100] = "Radians";
 char strUnitSelectionDegree[100] = "Degrees";
 
+char strHelpText[2000] = "Q: How can I navigate the menus?\nA: When prompted, you only need to enter the number of a submenu,\nnothing else (e.g. you don\'t need to enter the parantheses)\nBut if you managed to see this text, you most certanly figured that out! (:\n\nQ: How do I enter multiple values?\nA: If you need to enter multiple values for a problem,\nyou need to seperate them with a blank space (e.g. you cannot use commas)\n\nQ: I don\'t see the results of my calculation, why is that?\nA: Your answers are there, but when a calculation is completed\nthe main menu also pops up after it.\nYou may need to scroll up to see the results of your calculations.";
+char strHelpNoticeExit[100] = "Enter any number to go back to the main menu ";
+
 void setLanguageHUN() {
     //Title screen titles
     strcpy(strTitleMainMenu, "+===FOMENU==========================+");
@@ -130,6 +135,7 @@ void setLanguageHUN() {
     strcpy(strTitleLanguageSelection, "+===NYELV=KIVALASZTASA==============+");
     strcpy(strTitleBonusFeatures, "+===BONUSZ=FUNKCIOK=================+");
     strcpy(strTitleMisc, "+===EGYEB===========================+");
+    strcpy(strTitleHelpMenu, "+===SUGO============================+");
 
     strcpy(strLengthSideA, "a oldal hossza: ");
     strcpy(strLengthSideB, "b oldal hossza: ");
@@ -156,6 +162,7 @@ void setLanguageHUN() {
     strcpy(strMenuMainExit, "Kilepes");
     strcpy(strMenuMainAngleUnitChanger, "Szog mertekegysegenek allitasa");
     strcpy(strMenuMainLanguage, "Nyelv allitasa");
+    strcpy(strMenuMainHelp, "Sugo");
 
     strcpy(strMenuMainAngleStatusBeginning, "A szogek jelenleg ");
     strcpy(strMenuMainAngleStatusDeg, "fokra vannak allitva.");
@@ -224,6 +231,9 @@ void setLanguageHUN() {
     strcpy(strUnitSelectionQuestion, "Valaszd ki a szogek mertekegyseget:");
     strcpy(strUnitSelectionDegree, "Szogek");
     strcpy(strUnitSelectionRadian, "Radianok");
+
+    strcpy(strHelpNoticeExit, "A kilepeshez adj meg egy akarmilyen szamot: ");
+    strcpy(strHelpText, "K: Hogyan tudok navigalni a menuk kozott?\nV: Mikor a program megker, kizarolag az almenu szamat kell megadd\n(pl. nem kell beirnod a zarojeleket)\nDe ha ezt olvasod, akkor erre mar ugyis rajottel! (:\n\nK: Hogyan irok be tobb erteket?\nV: Ha egy problemahoz a program egyszerre tobb szamot is ker,\nakkor azokat szokozzel elvalasztva add meg (pl. nem hasznalhatsz vesszoket)\n\nK: Nem latom az eredmenyeket, miert van ez?\nV: A kerdeseidre ott van a valasz, csak mikor egy szamitas elvegzodik,\na fomenu ismet megjelenik.\nLehet, hogy fennebb kell gorgess, ahhoz hogy lathasd az eredmenyeket.");
 }
 
 float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
@@ -289,6 +299,14 @@ void settingsLanguage() { // Settings menu for selecting the language of the pro
     else {
         cout << "No change has been made" << endl;
     }
+}
+
+void helpMenu() {
+    int option;
+    cout << strTitleHelpMenu << endl << endl;
+    cout << strHelpText << endl << endl;
+    cout << strHelpNoticeExit;
+    cin >> option;
 }
 
 void calculateOption101() { // Void using Law Of Cosines
@@ -596,11 +614,12 @@ void selection() {
     cout << "[6] " << strMenuMainSinCos << endl;
     cout << "[7] " << strMenuMainTanCot << endl;
     cout << strTitleMisc << endl;
-    cout << "[9] "<< strMenuMainExit << " [0] " << strMenuMainAngleUnitChanger << " [8] " << strMenuMainLanguage << endl;
+    cout << "[10] "<< strMenuMainExit << " [11] " << strMenuMainHelp << endl;
+    cout << "[12] " << strMenuMainAngleUnitChanger << " [13] " << strMenuMainLanguage << endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
     
-    if(option == 9) {
+    if(option == 10) {
         cout << strNoticeClosingProgram;
         exitProgram=true;
     }
@@ -625,10 +644,13 @@ void selection() {
     else if (option == 7) {
         bonusMenuTanCotCalc();
     }
-    else if (option == 0) {
+    else if (option == 11) {
+        helpMenu();
+    }
+    else if (option == 12) {
         settingsAngleUnits();
     }
-    else if (option == 8) {
+    else if (option == 13) {
         settingsLanguage();
     }
     else {
