@@ -6,7 +6,9 @@ The code is written in C++ and doesn't use platform specific features.
 
 You can do the following in the app:
 
+### UPDATED!!!
 
+##### New features: fully working hunagrian language, inverse trigonometric functions and a more bug-free experience!
 
 1. *Solve a triangle*
 2. Calculate its **area**
