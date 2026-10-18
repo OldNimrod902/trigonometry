@@ -20,7 +20,7 @@ char strTitleLanguageSelection[100] = "+===LANGUAGE=SELECTION==============+";
 char strTitleBonusFeatures[100] = "+===BONUS=FEATURES==================+";
 char strTitleMisc[100] = "+===MISCELLANEOUS===================+";
 char strTitleHelpMenu[100] = "+===FAQ=============================+";
-
+char strTitleInverseTrigFunc[100] = "+===INVERSE=TRIGONOMETRIC=FUNCTIONS=+";
 
 char strLengthSideA[100] = "Side a: ";
 char strLengthSideB[100] = "Side b: ";
@@ -48,6 +48,7 @@ char strMenuMainExit[100] = "Exit";
 char strMenuMainAngleUnitChanger[100] = "Change angle unit";
 char strMenuMainLanguage[100] = "Change language";
 char strMenuMainHelp[100] = "FAQ";
+char strMenuMainInverseTrig[100] = "Inverse trigonometric functions";
 
 char strMenuMainAngleStatusBeginning[100] = "Angles are currently set to ";
 char strMenuMainAngleStatusDeg[100] = "degrees";
@@ -121,7 +122,19 @@ char strUnitSelectionDegree[100] = "Degrees";
 char strHelpText[2000] = "Q: How can I navigate the menus?\nA: When prompted, you only need to enter the number of a submenu,\nnothing else (e.g. you don\'t need to enter the parantheses)\nBut if you managed to see this text, you most certanly figured that out! (:\n\nQ: How do I enter multiple values?\nA: If you need to enter multiple values for a problem,\nyou need to seperate them with a blank space (e.g. you cannot use commas)\n\nQ: I don\'t see the results of my calculation, why is that?\nA: Your answers are there, but when a calculation is completed\nthe main menu also pops up after it.\nYou may need to scroll up to see the results of your calculations.";
 char strHelpNoticeExit[100] = "Enter any number to go back to the main menu ";
 
-
+char strInverseInformationQuestion[100] = "What type of information do you have?"; ///nincs leforditva
+char strInverseOptionSine[100] = "The sine of an angle";
+char strInverseOptionCosine[100] = "The cosine of an angle";
+char strInverseOptionTangent[100] = "The tangent of an angle";
+char strInverseOptionCotangent[100] = "The cotangent of an angle";
+char strInverseResult[100] = "The angle is ";
+char strInverseResultDeg[100] = " degrees";
+char strInverseResultRad[100] = " radians";
+char strInverseEnterSin[100] = "Enter the sine of the angle: ";
+char strInverseEnterCos[100] = "Enter the cosine of the angle: ";
+char strInverseEnterTan[100] = "Enter the tangent of the angle: ";
+char strInverseEnterCot[100] = "Enter the cotangent of the angle: ";
+char strInverseInvalid[100] = "Invalid value. Enter a value in the interval of [-1 ; 1]: ";
 
 void setLanguageHUN() {
     //Title screen titles
@@ -139,6 +152,7 @@ void setLanguageHUN() {
     strcpy(strTitleBonusFeatures, "+===BONUSZ=FUNKCIOK=================+");
     strcpy(strTitleMisc, "+===EGYEB===========================+");
     strcpy(strTitleHelpMenu, "+===GYIK============================+");
+    strcpy(strTitleInverseTrigFunc, "+===INVERZ=TRIGONOMETRIKUS=FUGGV.===+");
 
     strcpy(strLengthSideA, "a oldal hossza: ");
     strcpy(strLengthSideB, "b oldal hossza: ");
@@ -166,6 +180,7 @@ void setLanguageHUN() {
     strcpy(strMenuMainAngleUnitChanger, "Szog mertekegysegenek allitasa");
     strcpy(strMenuMainLanguage, "Nyelv allitasa");
     strcpy(strMenuMainHelp, "GYIK");
+    strcpy(strMenuMainInverseTrig, "Inverz trigonometrikus fuggvenyek");
 
     strcpy(strMenuMainAngleStatusBeginning, "A szogek jelenleg ");
     strcpy(strMenuMainAngleStatusDeg, "fokra vannak allitva.");
@@ -235,6 +250,20 @@ void setLanguageHUN() {
     strcpy(strUnitSelectionQuestion, "Valaszd ki a szogek mertekegyseget:");
     strcpy(strUnitSelectionDegree, "Szogek");
     strcpy(strUnitSelectionRadian, "Radianok");
+
+    strcpy(strInverseInformationQuestion, "Milyen informaciod van a szoggel kapcsolatban?");
+    strcpy(strInverseOptionSine, "A szog szinusza");
+    strcpy(strInverseOptionCosine, "A szog koszinusza");
+    strcpy(strInverseOptionTangent, "A szog tangense");
+    strcpy(strInverseOptionCotangent, "A szog kotangense");
+    strcpy(strInverseResult, "A szog ");
+    strcpy(strInverseResultDeg, " szog");
+    strcpy(strInverseResultRad, " radian");
+    strcpy(strInverseEnterSin, "Add meg a szog szinuszat: ");
+    strcpy(strInverseEnterCos, "Add meg a szog koszinuszat: ");
+    strcpy(strInverseEnterTan, "Add meg a szog tangenset: ");
+    strcpy(strInverseEnterCot, "Add meg a szog kotangenset: ");
+    strcpy(strInverseInvalid, "Hibas ertek. Adj meg egy erteket a [-1; 1] intervallumon belul: ");
 
     strcpy(strHelpNoticeExit, "A kilepeshez adj meg egy akarmilyen szamot: ");
     strcpy(strHelpText, "K: Hogyan tudok navigalni a menuk kozott?\nV: Mikor a program megker, kizarolag az almenu szamat kell megadd\n(pl. nem kell beirnod a zarojeleket)\nDe ha ezt olvasod, akkor erre mar ugyis rajottel! (:\n\nK: Hogyan irok be tobb erteket?\nV: Ha egy problemahoz a program egyszerre tobb szamot is ker,\nakkor azokat szokozzel elvalasztva add meg (pl. nem hasznalhatsz vesszoket)\n\nK: Nem latom az eredmenyeket, miert van ez?\nV: A kerdeseidre ott van a valasz, csak mikor egy szamitas elvegzodik,\na fomenu ismet megjelenik.\nLehet, hogy fennebb kell gorgess, ahhoz hogy lathasd az eredmenyeket.");
@@ -452,6 +481,59 @@ void calculateAngleBisector(float a, float b, float c) { // Void to calculate th
 
 // First submenus from the main menu 
 
+void calculateMenuInverseTrigFunc() {
+    int option;
+    float value, result;
+    cout << strTitleInverseTrigFunc << endl;
+    cout << strInverseInformationQuestion << endl << endl;
+    cout << "[1] " << strInverseOptionSine << endl;
+    cout << "[2] " << strInverseOptionCosine << endl;
+    cout << "[3] " << strInverseOptionTangent << endl;
+    cout << "[4] " << strInverseOptionCotangent << endl;
+    coutSeparator();
+    cout << strNoticeEnterOption; cin >> option;
+    if(option == 1) {
+        cout << strInverseEnterSin;
+        cin >> value;
+        while(value < -1 || value > 1) {
+            cout << strInverseInvalid;
+            cin >> value;
+        }
+        result=asin(value);
+        if(!radians) result=result*180/M_PI;
+        cout << strInverseResult << result << (radians ? strInverseResultRad : strInverseResultDeg);
+    }
+    else if(option == 2){
+        cout << strInverseEnterCos;
+        cin >> value;
+        while(value < -1 || value > 1) {
+            cout << strInverseInvalid;
+            cin >> value;
+        }
+        result=acos(value);
+        if(!radians) result=result*180/M_PI;
+        cout << strInverseResult << result << (radians ? strInverseResultRad : strInverseResultDeg);
+    }
+    else if(option == 3) {
+        cout << strInverseEnterTan;
+        cin >> value;
+        result=atan(value);
+        if(!radians) result=result*180/M_PI;
+        cout << strInverseResult << result << (radians ? strInverseResultRad : strInverseResultDeg);
+    }
+    else if(option == 4) {
+        cout << strInverseEnterCot;
+        cin >> value;
+        result=M_PI/2-atan(value);
+        if(!radians) result=result*180/M_PI;
+        cout << strInverseResult << result << (radians ? strInverseResultRad : strInverseResultDeg);
+    }
+    else{
+        cout << strNoticeInexistentOption << endl;
+        calculateMenuInverseTrigFunc;
+    }
+}
+
 void calculateMenuSolveTriangle() {
     int option;
     cout << endl << endl << strTitleSolveTriangle << endl << strSlvTriInformationQuestion << endl << endl;
@@ -476,7 +558,7 @@ void calculateMenuSolveTriangle() {
     }
 }
 
-void calculateMenuArea() { //BUGFREE
+void calculateMenuArea() {
     int option;
     cout << endl << endl<< strTitleAreaTriangle << endl << strAreaTriInformationQuestion << endl << endl;
     cout << "[1] " << strAreaTriOptionHeron << endl;
@@ -510,7 +592,7 @@ void calculateMenuArea() { //BUGFREE
     }
 }
 
-void calculateMenuNotableLines() { //BUGFREE
+void calculateMenuNotableLines() {
     int option;
     float a, b, c;
     cout << endl << endl << strTitleNotableLines << endl;;
@@ -545,7 +627,7 @@ void calculateMenuNotableLines() { //BUGFREE
     }
 }
 
-void calculateMenuRadius() { //BUGFREE
+void calculateMenuRadius() {
     float a, b, c;
     cout << endl << endl << strTitleRadiusCalculator << endl << endl;
 
@@ -565,7 +647,7 @@ void calculateMenuRadius() { //BUGFREE
     cout << strInradiusResult << inradius << endl;
 }
 
-void bonusMenuPythagorean() { //BUGFREE
+void bonusMenuPythagorean() {
     int option;
     cout << endl << endl << strTitlePythagorean << endl;
     cout << strPythNoteRightTri << endl;
@@ -607,7 +689,7 @@ void bonusMenuPythagorean() { //BUGFREE
     }
 }
 
-void bonusMenuSinCosCalc() { //BUGFREE
+void bonusMenuSinCosCalc() {
     float angle;
     cout << endl << endl << strTitleSinCosCalculator << endl;
 
@@ -624,7 +706,7 @@ void bonusMenuSinCosCalc() { //BUGFREE
     cout << strCosAngle << cos(angle) << endl;
 }
 
-void bonusMenuTanCotCalc() { //BUGFREE
+void bonusMenuTanCotCalc() {
     float angle;
     cout << endl << endl << strTitleTanCotCalculator << endl;
 
@@ -655,6 +737,7 @@ void selection() {
     cout << "[5] " << strMenuMainPythagorean << endl;
     cout << "[6] " << strMenuMainSinCos << endl;
     cout << "[7] " << strMenuMainTanCot << endl;
+    cout << "[8] " << strMenuMainInverseTrig << endl;
     cout << strTitleMisc << endl;
     cout << "[10] "<< strMenuMainExit << " [11] " << strMenuMainHelp << endl;
     cout << "[12] " << strMenuMainAngleUnitChanger << " [13] " << strMenuMainLanguage << endl;
@@ -685,6 +768,9 @@ void selection() {
     }
     else if (option == 7) {
         bonusMenuTanCotCalc();
+    }
+    else if (option == 8) {
+        calculateMenuInverseTrigFunc();
     }
     else if (option == 11) {
         helpMenu();
