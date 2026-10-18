@@ -4,6 +4,7 @@ using namespace std;
 
 bool exitProgram = false;
 bool radians = false;
+bool changedLanguage = false;
 
 // Language initalization
 
@@ -269,35 +270,35 @@ void setLanguageHUN() {
     strcpy(strHelpText, "K: Hogyan tudok navigalni a menuk kozott?\nV: Mikor a program megker, kizarolag az almenu szamat kell megadd\n(pl. nem kell beirnod a zarojeleket)\nDe ha ezt olvasod, akkor erre mar ugyis rajottel! (:\n\nK: Hogyan irok be tobb erteket?\nV: Ha egy problemahoz a program egyszerre tobb szamot is ker,\nakkor azokat szokozzel elvalasztva add meg (pl. nem hasznalhatsz vesszoket)\n\nK: Nem latom az eredmenyeket, miert van ez?\nV: A kerdeseidre ott van a valasz, csak mikor egy szamitas elvegzodik,\na fomenu ismet megjelenik.\nLehet, hogy fennebb kell gorgess, ahhoz hogy lathasd az eredmenyeket.");
 }
 
-bool isTriangleValid(float a, float b, float c) {
+bool isTriangleValid(float a, float b, float c) { /// this function returns true if the triangle is valid (a+b>c and all sides are positive)
     if(a+b>c && b+c>a && a+c>b && a>0 && b>0 && c>0) {
         return true;
     }
     return false;
 }
 
-float areaBaseHeight(float base, float height) { // Basic area calculation using base and height
+float areaBaseHeight(float base, float height) { // this function returns the area of a triangle based on it's base and height
     return 0.5*base*height;
 }
 
-float areaHeron(float a, float b, float c) { // Area calculation using Heron's formula
+float areaHeron(float a, float b, float c) { // this function returns the area of a triangle based on it's side lengths
     float s=(a+b+c)/2;
     return sqrt(s*(s-a)*(s-b)*(s-c));
 }
 
-float pythagoreanTheorem(float a, float b) { // Pythagorean theorem for right triangles
+float pythagoreanTheorem(float a, float b) { // this function returns the longest side of a right triangle based on it's two other sides
     return sqrt(a*a + b*b);
 }
 
-float pythagoreanForCathetus(float hypo, float cath1) { // Pythagorean theorem for finding a cathetus
+float pythagoreanForCathetus(float hypo, float cath1) { // this function returns a cathetus of a triangle based on the other cathetus and the longest side
     return sqrt(hypo*hypo - cath1*cath1);
 }
 
-void coutSeparator() { // Void to output a separator line
+void coutSeparator() { // this void outputs a separator line
     cout << "+===================================+" << endl;
 }  
 
-void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, float angleC) { // Void to output the solved triangle
+void coutSolvedTriangle(float a, float b, float c, float angleA, float angleB, float angleC) { // this void prints the template for all the details of a solved triangle
     cout << strLengthSideA << a << endl;
     cout << strLengthSideB << b << endl;
     cout << strLengthSideC << c << endl;
@@ -328,20 +329,21 @@ void settingsLanguage() { // Settings menu for selecting the language of the pro
     
     cout << "Please note, that currently this change couldn\'t be undone, unless you restart the app." << endl;
     cout << "Select the language of the program:" << endl << endl;
-    cout << "[H] Magyar (Hungarian)" << endl;
+    cout << "[H] Hungarian (Magyar)" << endl;
     coutSeparator();
     cout << "Enter the corresponding letter to your selection: ";
     char option; cin >> option;
     if(option == 'H' || option == 'h') {
         cout << "Magyar nyelv kivalasztva." << endl;
         setLanguageHUN();
+        changedLanguage=true;
     }
     else {
         cout << "No change has been made" << endl;
     }
 }
 
-void helpMenu() {
+void helpMenu() { // FAQ menu
     int option;
     cout << strTitleHelpMenu << endl << endl;
     cout << strHelpText << endl << endl;
@@ -349,7 +351,7 @@ void helpMenu() {
     cin >> option;
 }
 
-void calculateOption101() { // Void using Law Of Cosines
+void calculateOption101() { // Void using Law Of Cosines to solve a triangle with two sides and one angle
     float a, b, c, angleA, angleB, angleC;
     cout << strTitleSlvTri2Side1Angle << endl << endl;
     cout << strNoticeEnter2Sides;
@@ -377,7 +379,7 @@ void calculateOption101() { // Void using Law Of Cosines
     coutSolvedTriangle(a, b, c, angleA, angleB, angleC);
 }
 
-void calculateOption102() { // Void using Law Of Sines
+void calculateOption102() { // Void using Law Of Sines to solve a triangle with one side and two angles
     float a, b, c, angleA, angleB, angleC;
     cout << strTitleSlvTri1Side2Angle << endl << endl;
     cout << strNoticeEnterSideOppositeToAngle;
@@ -419,7 +421,7 @@ void calculateOption102() { // Void using Law Of Sines
     coutSolvedTriangle(a, b, c, angleA, angleB, angleC);
 }
 
-void calculateOption103() { // Void using Law Of Cosines to find angles
+void calculateOption103() { // Void using Law Of Cosines to solve a triangle with all three sides
     float a, b, c, angleA, angleB, angleC;
     cout << strTitleSlvTri3Side0Angle << endl << endl;
     cout << strNoticeEnterAll3Sides;
@@ -481,7 +483,7 @@ void calculateAngleBisector(float a, float b, float c) { // Void to calculate th
 
 // First submenus from the main menu 
 
-void calculateMenuInverseTrigFunc() {
+void calculateMenuInverseTrigFunc() { // Void to calculate inverse trigonometric functions of a given value
     int option;
     float value, result;
     cout << strTitleInverseTrigFunc << endl;
@@ -534,7 +536,7 @@ void calculateMenuInverseTrigFunc() {
     }
 }
 
-void calculateMenuSolveTriangle() {
+void calculateMenuSolveTriangle() { // selection screen of the triangle solver feature
     int option;
     cout << endl << endl << strTitleSolveTriangle << endl << strSlvTriInformationQuestion << endl << endl;
     cout << "[1] " << strSlvTriOption2Side1Angle << endl;
@@ -558,7 +560,7 @@ void calculateMenuSolveTriangle() {
     }
 }
 
-void calculateMenuArea() {
+void calculateMenuArea() { // selection screen of the area calculation feature
     int option;
     cout << endl << endl<< strTitleAreaTriangle << endl << strAreaTriInformationQuestion << endl << endl;
     cout << "[1] " << strAreaTriOptionHeron << endl;
@@ -566,7 +568,7 @@ void calculateMenuArea() {
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
 
-    if(option==1) {
+    if(option==1) { // heron's formula, used to calculate area based on side lenghts
         float a, b, c;
         cout << strAreaTriNoticeEnterHeron;
         cin >> a >> b >> c;
@@ -576,7 +578,7 @@ void calculateMenuArea() {
         }
         cout << strAreaTriResult << areaHeron(a, b, c) << endl;
     }
-    else if(option==2) {
+    else if(option==2) { // simple area formula
         float base, height;
         cout << strAreaTriNoticeEnterBH;
         cin >> base >> height;
@@ -592,7 +594,7 @@ void calculateMenuArea() {
     }
 }
 
-void calculateMenuNotableLines() {
+void calculateMenuNotableLines() { // selection screen to calculate the notable lines of a triangle
     int option;
     float a, b, c;
     cout << endl << endl << strTitleNotableLines << endl;;
@@ -627,7 +629,7 @@ void calculateMenuNotableLines() {
     }
 }
 
-void calculateMenuRadius() {
+void calculateMenuRadius() { // void to calculate the circumradius and inradius of a triangle
     float a, b, c;
     cout << endl << endl << strTitleRadiusCalculator << endl << endl;
 
@@ -647,7 +649,7 @@ void calculateMenuRadius() {
     cout << strInradiusResult << inradius << endl;
 }
 
-void bonusMenuPythagorean() {
+void bonusMenuPythagorean() { // selection screen for the two variants of the pythagoream theorem feature
     int option;
     cout << endl << endl << strTitlePythagorean << endl;
     cout << strPythNoteRightTri << endl;
@@ -689,7 +691,7 @@ void bonusMenuPythagorean() {
     }
 }
 
-void bonusMenuSinCosCalc() {
+void bonusMenuSinCosCalc() { // void to calculate the sine and cosine values of a given angle
     float angle;
     cout << endl << endl << strTitleSinCosCalculator << endl;
 
@@ -706,7 +708,7 @@ void bonusMenuSinCosCalc() {
     cout << strCosAngle << cos(angle) << endl;
 }
 
-void bonusMenuTanCotCalc() {
+void bonusMenuTanCotCalc() { // void to calculate the tangent and cotangent values of a given angle
     float angle;
     cout << endl << endl << strTitleTanCotCalculator << endl;
 
@@ -723,7 +725,7 @@ void bonusMenuTanCotCalc() {
     cout << strCotAngle << 1/tan(angle) << endl;
 }
 
-void selection() {
+void selection() { // Main menu selection screen
     int option;
     cout << endl << strTitleMainMenu << endl;
     cout << strMenuMainAngleStatusBeginning; if(radians) cout << strMenuMainAngleStatusRad; else cout << strMenuMainAngleStatusDeg; cout << endl;
@@ -740,7 +742,9 @@ void selection() {
     cout << "[8] " << strMenuMainInverseTrig << endl;
     cout << strTitleMisc << endl;
     cout << "[10] "<< strMenuMainExit << " [11] " << strMenuMainHelp << endl;
-    cout << "[12] " << strMenuMainAngleUnitChanger << " [13] " << strMenuMainLanguage << endl;
+    cout << "[12] " << strMenuMainAngleUnitChanger;
+    if(!changedLanguage) cout << " [13] " << strMenuMainLanguage << endl;
+    else cout << endl;
     coutSeparator();
     cout << strNoticeEnterOption; cin >> option;
     
