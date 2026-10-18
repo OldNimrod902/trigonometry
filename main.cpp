@@ -19,7 +19,7 @@ char strTitleAngleUnits[100] = "+===UNIT=OF=MEASUREMENT=============+";
 char strTitleLanguageSelection[100] = "+===LANGUAGE=SELECTION==============+";
 char strTitleBonusFeatures[100] = "+===BONUS=FEATURES==================+";
 char strTitleMisc[100] = "+===MISCELLANEOUS===================+";
-char strTitleHelpMenu[100] = "+===HELP============================+";
+char strTitleHelpMenu[100] = "+===FAQ=============================+";
 
 
 char strLengthSideA[100] = "Side a: ";
@@ -47,7 +47,7 @@ char strMenuMainTanCot[100] = "Tangent and cotangent value calculator";
 char strMenuMainExit[100] = "Exit";
 char strMenuMainAngleUnitChanger[100] = "Change angle unit";
 char strMenuMainLanguage[100] = "Change language";
-char strMenuMainHelp[100] = "Help";
+char strMenuMainHelp[100] = "FAQ";
 
 char strMenuMainAngleStatusBeginning[100] = "Angles are currently set to ";
 char strMenuMainAngleStatusDeg[100] = "degrees";
@@ -135,7 +135,7 @@ void setLanguageHUN() {
     strcpy(strTitleLanguageSelection, "+===NYELV=KIVALASZTASA==============+");
     strcpy(strTitleBonusFeatures, "+===BONUSZ=FUNKCIOK=================+");
     strcpy(strTitleMisc, "+===EGYEB===========================+");
-    strcpy(strTitleHelpMenu, "+===SUGO============================+");
+    strcpy(strTitleHelpMenu, "+===GYIK============================+");
 
     strcpy(strLengthSideA, "a oldal hossza: ");
     strcpy(strLengthSideB, "b oldal hossza: ");
@@ -162,7 +162,7 @@ void setLanguageHUN() {
     strcpy(strMenuMainExit, "Kilepes");
     strcpy(strMenuMainAngleUnitChanger, "Szog mertekegysegenek allitasa");
     strcpy(strMenuMainLanguage, "Nyelv allitasa");
-    strcpy(strMenuMainHelp, "Sugo");
+    strcpy(strMenuMainHelp, "GYIK");
 
     strcpy(strMenuMainAngleStatusBeginning, "A szogek jelenleg ");
     strcpy(strMenuMainAngleStatusDeg, "fokra vannak allitva.");
