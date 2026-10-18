@@ -499,7 +499,7 @@ void calculateMenuArea() { //BUGFREE
         cout << strAreaTriNoticeEnterBH;
         cin >> base >> height;
         while(base<=0 || height<=0) {
-            strNoticeTriangleSideLengthsPositive;
+            cout << strNoticeTriangleSideLengthsPositive;
             cin >> base >> height;
         }
         cout << strAreaTriResult << areaBaseHeight(base, height) << endl;
