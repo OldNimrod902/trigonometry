@@ -6,7 +6,9 @@ The code is written in C++ and doesn't use platform specific features.
 
 You can do the following in the app:
 
+### UPDATED!!!
 
+##### New features: fully working hunagrian language, inverse trigonometric functions and a more bug-free experience!
 
 1. *Solve a triangle*
 2. Calculate its **area**
@@ -16,9 +18,20 @@ You can do the following in the app:
 
 Along these trigonometric features, you can also ***find the Pythagoream Theorem***, and ***a basic Sin and Cosine value calculator***
 
-
-
 You can navigate the app using **numbers** from your keyboard
 
+## Frequently Asked Questions
 
-<img width="495" height="188" alt="image" src="https://github.com/user-attachments/assets/57809a0d-9047-443f-97b0-2db95bbf1e78" />
+**Q: How can I navigate the menus?**
+
+*A: When prompted, you only need to enter the number of a submenu, nothing else (e.g. you don't need to enter the parantheses)*
+
+**Q: How do I enter multiple values?**
+
+*A: If you need to enter multiple values for a problem, you need to seperate them with a blank space (e.g. you cannot use commas)*
+
+**Q: I don't see the results of my calculation, why is that?**
+
+*A: Your answers are there, but when a calculation is completed the main menu also pops up after it.
+You may need to scroll up to see the results of your calculations.*
+
