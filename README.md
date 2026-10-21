@@ -2,9 +2,6 @@
 
 The code is written in C++ and doesn't use platform specific features.
 
-#### DEMO
-On Windows, you can try out the app by downloading and running ***trigonometryCalc.exe***
-
 You can do the following in the app:
 
 ### UPDATED!!!
