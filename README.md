@@ -2,11 +2,39 @@
 
 The code is written in C++ and doesn't use platform specific features.
 
+
+
+### Overview
+
+This is a console-based app designed to make common trigonometric and geometric calculations easier.
+
+Instead of calculating everything by hand, users can select a calculation from the menu, enter the required values, and see the results directly in the application.
+
+I made this application because I had just learned trigonometry in high school and I found myself searching for online tools many times to solve problems and I tought I should make a calculator that has everything I need in one place.
+
+<img width="845" height="542" alt="image" src="https://github.com/user-attachments/assets/a73ef55d-0b0e-4eef-899c-f1ad4cf77786" />
+<img width="520" height="195" alt="image" src="https://github.com/user-attachments/assets/66aa1a06-228e-4a7b-821c-52993e89d764" />
+
+
+### How to run
+
+If you're on Windows, you can just download and run the release "TrigonometryCalc.exe".
+
+It is a console application that you can navigate with numbers from you keypad.
+
+
+
+If you aren't on Windows, you can compile the code on Linux/MacOS, there aren't any platform specific libraries used in the code.
+
+
+
+### ***UPDATED!!!***
+
+##### New features: fully working hungarian language, inverse trigonometric functions and a more bug-free experience!
+
+
+
 You can do the following in the app:
-
-### UPDATED!!!
-
-##### New features: fully working hunagrian language, inverse trigonometric functions and a more bug-free experience!
 
 1. *Solve a triangle*
 2. Calculate its **area**
@@ -18,7 +46,7 @@ Along these trigonometric features, you can also ***find the Pythagoream Theorem
 
 You can navigate the app using **numbers** from your keyboard
 
-## Frequently Asked Questions
+## **Frequently Asked Questions**
 
 **Q: How can I navigate the menus?**
 
